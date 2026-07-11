@@ -1,0 +1,23 @@
+.compareVariants {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+
+    &--selected {
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+}

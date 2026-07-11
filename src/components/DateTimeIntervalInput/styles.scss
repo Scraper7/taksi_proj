@@ -1,0 +1,15 @@
+.date-time {
+  &__fields {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+
+    &--bottom {
+      align-items: flex-end;
+    }
+    
+    & > * {
+      flex: 1;
+    }
+  }
+}

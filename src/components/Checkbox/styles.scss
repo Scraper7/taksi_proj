@@ -1,0 +1,101 @@
+@use '../Theme';
+
+.checkbox {
+  $b: &;
+  margin-bottom: 10px;
+
+  &__label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__input {
+    visibility: hidden;
+    position: absolute;
+    margin: 0;
+
+    + #{$b}__label {
+      &:before {
+        content: "\00a0";
+        display: inline-block;
+        font: 22px/1em sans-serif;
+        width: 25px;
+        height: 25px;
+        border: 2px solid #1D2A50;
+        padding: 0;
+        margin: 0 0.5em 0 0;
+
+        box-sizing: border-box;
+        border-radius: 4px;
+      }
+    }
+
+    &:checked {
+      + #{$b}__label {
+        &:before {
+          background: #1fdc00;
+          color: #ffffff;
+          border: 2px solid #1c8c00;
+          content: "\2713";
+          text-align: center;
+        }
+
+        &:after {
+          font-weight: bold;
+        }
+      }
+    }
+
+    &:focus {
+      + #{$b}__label {
+        &:before {
+          outline: rgb(59, 153, 252) auto 5px;
+        }
+      }
+    }
+  }
+
+  &--disabled {
+    #{$b} {
+      &__label {
+        cursor: auto;
+      }
+    }
+  }
+
+  &--style {
+    &--red-design {
+      margin-bottom: 0;
+
+      #{$b} {
+        &__input {
+          + #{$b}__label {
+            &:before {
+              width: 24px;
+              height: 24px;
+              border: 1px solid var(#{Theme.$accent});
+              border-radius: 8px;
+              margin: 0 8px 0 0;
+              background: transparent;
+              transition: .1s background;
+            }
+          }
+
+          &:checked {
+            + #{$b}__label {
+              &:before {
+                background: var(#{Theme.$accent});
+                border: 1px solid var(#{Theme.$accent});
+              }
+            }
+          }
+        }
+
+        &__label {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}

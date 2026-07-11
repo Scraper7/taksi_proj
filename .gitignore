@@ -1,0 +1,33 @@
+# ── Зависимости (восстанавливаются через `npm ci` из package-lock.json) ──
+node_modules/
+
+# ВАЖНО: папку lib/ НЕ игнорируем — это локальные зависимости-исходники
+#   ("react-dev-utils": "./lib/react-dev-utils" и
+#    "react-leaflet-fullscreen-plugin": "./lib/react-leaflet-fullscreen-plugin")
+
+# ── Результаты сборки (генерируются командой `npm run build`) ──
+/build
+
+# ── Тесты / покрытие ──
+/coverage
+
+# ── Локальные секреты и переопределения окружения ──
+# (обычный .env коммитится; *.local — нет, т.к. могут содержать ключи)
+.env.local
+.env.*.local
+
+# ── Деплой Vercel (локальная привязка проекта) ──
+.vercel
+
+# ── Логи ──
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Мусор ОС и редакторов ──
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

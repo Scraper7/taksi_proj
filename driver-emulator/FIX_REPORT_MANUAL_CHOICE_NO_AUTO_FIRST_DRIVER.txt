@@ -1,0 +1,33 @@
+Исправление: ручной выбор водителя без автоподстановки первого
+
+Что было не так:
+- Эмулятор всё ещё мог отправлять performer=1, если заказ не распознавался как offer/voting по данным backend.
+- На пассажирском интерфейсе первый кандидат визуально выбирался автоматически, из-за чего создавалось ощущение, что система сама выбрала первого водителя.
+
+Что изменено:
+1. В driver-emulator/src/simulator.js добавлен жёсткий учебный режим manualChoiceOnly / forceCandidateOnly.
+   Теперь эмулятор всегда отправляет отклик как candidate-only через performer=0 и не назначает себя исполнителем.
+
+2. В driver-emulator/config.json и config.example.json включены:
+   manualChoiceOnly: true
+   forceCandidateOnly: true
+   autoAcceptCandidates: false
+   trainingAutoAcceptCandidates: false
+
+3. Движение эмулятора оставлено только после реального выбора клиента.
+   Пока водитель находится в состоянии кандидата, бот только ждёт и не нажимает arrival/start за клиента.
+
+4. В пассажирских экранах убран автопредвыбор первого кандидата:
+   - src/components/PassengerLiveOrder/index.tsx
+   - src/pages/Passenger/VotingForm.tsx
+   - src/components/modals/VoteModal.tsx
+
+Теперь клиент должен явно нажать на карточку/кнопку нужного водителя. Первый водитель больше не подсвечивается и не подставляется как выбранный автоматически.
+
+Проверка:
+- node --check driver-emulator/src/simulator.js
+- node --check driver-emulator/src/control-panel.js
+- JSON config.json/config.example.json успешно читаются
+
+Важно:
+Если старый эмулятор уже запущен, его нужно остановить и запустить заново. Просто заменить архив недостаточно, если в фоне висит старый node-процесс.

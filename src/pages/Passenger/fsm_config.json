@@ -1,0 +1,16 @@
+{
+  "page": "ClientOrderPage",
+  "defaultState": "DRAFT",
+  "states": [
+    "DRAFT",
+    "SEARCHING_DRIVER",
+    "CANDIDATE_SELECTION",
+    "DRIVER_ASSIGNED",
+    "DRIVER_ARRIVED",
+    "TRIP_STARTED",
+    "TRIP_FINISHED",
+    "CANCELLED",
+    "LEGACY_CHOICE_ORDER"
+  ],
+  "description": "Derived UI configuration for existing Passenger page. It must not replace Redux, map, timers or legacy vote/offer handlers."
+}

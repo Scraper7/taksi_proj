@@ -1,0 +1,15 @@
+.groupped-inputs {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: row;
+  gap: 0 15px;
+
+  &__label {
+    color: rgba(6, 46, 123, 1);
+    font-size: 20px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}

@@ -1,0 +1,39 @@
+.separator {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-style: normal;
+  font-size: 15px;
+  font-weight: 500;
+  width: 100%;
+  //position: absolute;
+  padding-left: 0;
+  //right: 0;
+  color: #000000;
+  box-shadow: 1px 0px 0px #ffffff;
+  position: relative;
+  padding: 0 16px;
+
+  svg {
+    transition: all .3s ease;
+
+    &[data-active='true'] {
+      transform: rotate(180deg);
+    }
+  }
+}
+// .separator::before,
+// .separator::after {
+//   content: "";
+//   border-bottom: 1px solid #d9d9d9;
+// }
+// .separator::before {
+//   flex: 0.1;
+//   margin-right: 10px;
+// }
+// .separator::after {
+//   margin-left: 10px;
+//   flex: 1;
+// }

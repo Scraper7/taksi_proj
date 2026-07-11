@@ -1,0 +1,318 @@
+{
+  "apiBase": "https://ibronevik.ru/taxi/c/gruzvill/api/v1",
+  "test_user_id": "",
+  "pollIntervalMs": 1500,
+  "orderType": "all",
+  "dryRun": false,
+  "logRawOrders": false,
+  "retrySafeOnWrongCOptions": true,
+  "offerTransport": "separate",
+  "defaultOffer": {
+    "minPrice": 1,
+    "maxPrice": 999999,
+    "etaOptions": [
+      "Буду через 5 минут",
+      "Буду через 8 минут",
+      "Буду через 10 минут",
+      "Буду через 12 минут",
+      "Буду через 15 минут",
+      "Буду через 20 минут",
+      "Буду через 25 минут"
+    ],
+    "commentOptions": [
+      "Еду напрямую",
+      "Могу быстро подъехать",
+      "Есть кондиционер",
+      "Большой багажник",
+      "Буду аккуратно",
+      "Свободен рядом"
+    ]
+  },
+  "driversFile": "data/registered-drivers.json",
+  "drivers": [
+    {
+      "name": "Gruzvill Driver 1",
+      "login": "gmailgtest1@gmail.com",
+      "password": "",
+      "type": "e-mail",
+      "acceptProbability": 1,
+      "reactionDelayMs": [
+        900,
+        2400
+      ],
+      "priceDelta": [
+        -40,
+        20
+      ],
+      "etaOptions": [
+        "Буду через 5 минут",
+        "Буду через 8 минут",
+        "Буду через 10 минут"
+      ],
+      "commentOptions": [
+        "Еду напрямую",
+        "Свободен рядом",
+        "Могу быстро подъехать"
+      ],
+      "location": {
+        "latitude": 47.221,
+        "longitude": 39.633
+      }
+    },
+    {
+      "name": "Gruzvill Driver 2",
+      "login": "gmailgtest2@gmail.com",
+      "password": "12345678",
+      "type": "e-mail",
+      "acceptProbability": 1,
+      "reactionDelayMs": [
+        1150,
+        2750
+      ],
+      "priceDelta": [
+        -20,
+        45
+      ],
+      "etaOptions": [
+        "Буду через 10 минут",
+        "Буду через 12 минут",
+        "Буду через 15 минут"
+      ],
+      "commentOptions": [
+        "Есть кондиционер",
+        "Еду без остановок",
+        "Могу забрать быстро"
+      ],
+      "location": {
+        "latitude": 47.22235,
+        "longitude": 39.6352
+      }
+    },
+    {
+      "name": "Gruzvill Driver 3",
+      "login": "gmailgtest3@gmail.com",
+      "password": "12345678",
+      "type": "e-mail",
+      "acceptProbability": 1,
+      "reactionDelayMs": [
+        1400,
+        3100
+      ],
+      "priceDelta": [
+        0,
+        70
+      ],
+      "etaOptions": [
+        "Буду через 8 минут",
+        "Буду через 15 минут",
+        "Буду через 20 минут"
+      ],
+      "commentOptions": [
+        "Большой багажник",
+        "Аккуратная поездка",
+        "Подъеду к точке"
+      ],
+      "location": {
+        "latitude": 47.21985,
+        "longitude": 39.6316
+      }
+    },
+    {
+      "name": "Gruzvill Driver 4",
+      "login": "gmailgtest4@gmail.com",
+      "password": "12345678",
+      "type": "e-mail",
+      "acceptProbability": 1,
+      "reactionDelayMs": [
+        1650,
+        3450
+      ],
+      "priceDelta": [
+        -60,
+        10
+      ],
+      "etaOptions": [
+        "Буду через 12 минут",
+        "Буду через 20 минут",
+        "Буду через 25 минут"
+      ],
+      "commentOptions": [
+        "Буду аккуратно",
+        "Знаю маршрут",
+        "Могу подождать"
+      ],
+      "location": {
+        "latitude": 47.2231,
+        "longitude": 39.6323
+      }
+    }
+  ],
+  "registration": {
+    "enabled": false,
+    "note": "No fake/test auto-created users. Only real gruzvill accounts from drivers[] are used."
+  },
+  "useConfigDrivers": true,
+  "activateCar": true,
+  "activateOnline": true,
+  "sendDriverLocation": true,
+  "locationIntervalMs": 3000,
+  "driverLocation": {
+    "latitude": 47.221,
+    "longitude": 39.633
+  },
+  "strictFilteredOrders": false,
+  "bookingLocationClasses": [],
+  "driverLocations": [
+    {
+      "latitude": 47.221,
+      "longitude": 39.633
+    },
+    {
+      "latitude": 47.22235,
+      "longitude": 39.6352
+    },
+    {
+      "latitude": 47.21985,
+      "longitude": 39.6316
+    },
+    {
+      "latitude": 47.2231,
+      "longitude": 39.6323
+    }
+  ],
+  "driverLocationSpreadMeters": 3500,
+  "tripSimulation": {
+    "enabled": true,
+    "moveIntervalMs": 800,
+    "speedToPickupKmh": 180,
+    "speedInTripKmh": 220,
+    "arriveDistanceMeters": 35,
+    "finishDistanceMeters": 45,
+    "autoArrive": true,
+    "autoStartTrip": true,
+    "autoStartRequiresCode": false,
+    "startAfterArriveMs": 7000,
+    "autoFinishTrip": true,
+    "minStepMeters": 80,
+    "startRetryMs": 2500,
+    "pressArriveAfterPickupMs": 3000,
+    "finishAfterDestinationMs": 4000
+  },
+  "hydrateActiveOrders": true,
+  "logMissingCoordinateKeys": true,
+  "allowDemoCoordinateFallback": true,
+  "fallbackPickupLocation": {
+    "latitude": 47.2216,
+    "longitude": 39.6343
+  },
+  "fallbackDestinationLocation": {
+    "latitude": 47.2239,
+    "longitude": 39.6366
+  },
+  "autoAcceptCandidates": false,
+  "trainingAutoAcceptCandidates": false,
+  "manualChoiceOnly": true,
+  "forceCandidateOnly": false,
+  "cleanupOldActiveOrders": true,
+  "cancelExistingActiveOrdersOnStart": true,
+  "cancelActiveOrdersWithUnknownAgeOnStart": true,
+  "staleActiveOrderMaxAgeMinutes": 20,
+  "votingStartCodeCandidates": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "votingStartTryWithoutCode": false,
+  "nonVotingStartTryCodeFallback": true,
+  "candidateCollectionDelayMs": 3500,
+  "manualChoiceMinWaitAfterResponseMs": 7000,
+  "choiceRequiresPassengerSelection": true,
+  "choiceMinCandidatesBeforeMovement": 2,
+  "autoRegisterTestDrivers": false,
+  "minReadyDrivers": 0,
+  "hydrateReadyOrdersForDecision": true,
+  "manualChoiceCandidateOnlyForDestinationOrders": true,
+  "verifyCreatedDriversBeforeUse": false,
+  "skipUnapprovedDrivers": false,
+  "ignoreExistingOrdersOnStart": false,
+  "ignoreStartupReadyOrders": false,
+  "spawnDriversNearOrder": true,
+  "spawnNearOrderMinMeters": 2800,
+  "spawnNearOrderMaxMeters": 6500,
+  "spawnNearOrderBeforeResponse": true,
+  "managerApproval": {
+    "enabled": true,
+    "login": "ibucnev15@gmail.com",
+    "password": "X7/m&33v0O",
+    "type": "e-mail",
+    "approveUsers": true,
+    "approveCars": true,
+    "setActive": true,
+    "note": "Uses the provided gruzvill manager/account only to try approving the listed driver accounts before the simulator sends offers. If backend does not allow this user to approve, manager must approve manually."
+  },
+  "requiredConfiguredDrivers": 4,
+  "autoMatchCarClassWithOrder": true,
+  "retryWrongCarClassAfterRepair": true,
+  "orderGenerator": {
+    "enabled": true,
+    "defaultMode": "offer",
+    "count": 1,
+    "useManagerAsClient": true,
+    "clients": [],
+    "contactPhone": "+70000000000",
+    "customerPrice": [
+      280,
+      420
+    ],
+    "carClass": 1,
+    "retryWithoutClass": true,
+    "retryWithClass": 1,
+    "locationClass": null,
+    "passengersCount": 1,
+    "startDelayMinutes": 2,
+    "maxWaiting": 7200,
+    "confirmAfterCreate": false,
+    "comments": [
+      "Тестовый заказ для проверки водителей",
+      "Проверка эмулятора gruzvill",
+      "Можно подъехать к точке подачи"
+    ],
+    "points": [
+      {
+        "from": {
+          "address": "улица Ерёменко, 4-й мкр, 6-й мкр, Левенцовский район",
+          "shortAddress": "улица Ерёменко",
+          "latitude": 47.230861,
+          "longitude": 39.589223
+        },
+        "to": {
+          "address": "проспект Солженицына, 3-й мкр, 6-й мкр, Левенцовский район",
+          "shortAddress": "проспект Солженицына",
+          "latitude": 47.236102,
+          "longitude": 39.604732
+        }
+      },
+      {
+        "from": {
+          "address": "улица Доватора, Северо-Западный район",
+          "shortAddress": "улица Доватора",
+          "latitude": 47.224674,
+          "longitude": 39.606437
+        },
+        "to": {
+          "address": "MaxMarket, 108 с1, улица Ерёменко",
+          "shortAddress": "MaxMarket",
+          "latitude": 47.231479,
+          "longitude": 39.586964
+        }
+      }
+    ]
+  },
+  "gruzvillFallbackCarClassId": "1"
+}

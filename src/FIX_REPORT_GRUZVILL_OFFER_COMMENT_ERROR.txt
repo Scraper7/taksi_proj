@@ -1,0 +1,19 @@
+Исправление OFFER / gruzvill: комментарий водителя и ошибка wrong c_options keys
+
+Что было:
+- В карточку кандидата для пассажира пытались прокинуть комментарий водителя через новые поля c_options.
+- На gruzvill backend не принимает незарегистрированные ключи c_options и возвращал ошибку:
+  wrong c_options keys: driver_offer_mode, driver_offer_price, driver_offer_eta, driver_offer_comment, comment, driver_comment, eta, pickup_time, driver_offer, offer.
+- Из-за этого водитель не мог отправить offer, появлялся popup "Не удалось выполнить действие".
+
+Что исправлено:
+- Отправка offer снова безопасная для gruzvill: в c_options всегда уходит старое валидное поле performers_price.
+- Дополнительные поля offer/comment отправляются в backend только если текущий конфиг явно разрешил их через c_options_valid_keys.
+- Комментарий водителя сохраняется в локальном offer-хранилище после успешной отправки и читается пассажирскими карточками кандидатов.
+- Для поиска комментария добавлен fallback не только по u_id водителя, но и по c_id машины, плюс fallback по единственному offer на заказ.
+- Обновлены отображения кандидатов: VotingForm, PassengerLiveOrder и CandidatesModal.
+- Строка комментария в CandidatesModal теперь переносится и не обрезается.
+
+Проверка:
+- Синтаксис изменённых TS/TSX файлов проверен через TypeScript transpileModule.
+- Ошибка backend wrong c_options keys устранена за счёт фильтрации неподдерживаемых c_options ключей.

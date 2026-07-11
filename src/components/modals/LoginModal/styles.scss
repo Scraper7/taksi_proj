@@ -1,0 +1,326 @@
+.login-modal {
+  max-width: 600px;
+
+  .error {
+    color: red;
+    text-align: center;
+    margin: 8px 0;
+  }
+
+  &_log-out {
+    display: flex;
+    justify-content: center;
+    height: 36px;
+    align-items: center;
+    font-family: Roboto;
+    color: #6F1717;
+    font-size: 25px;
+  }
+
+  .tabs {
+    margin-bottom: 20px;
+    & > div {
+      width: 100%;
+      border-radius: 0;
+
+      &:first-child {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+
+      &:last-child {
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+  }
+
+  .error-message {
+    align-self: center;
+  }
+
+  .login-form {
+    color: #1D2A50;
+
+    &__input {
+      margin-bottom: 40px;
+    }
+  }
+
+  fieldset {
+    border-radius: 13px;
+    width: 100%;
+    box-sizing: border-box;
+
+    legend {
+      margin: 0 auto;
+      padding: 0 15px 0 15px;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 26px;
+      text-align: center;
+      color: #A90000;
+    }
+
+    .login {
+      display: flex;
+      flex-direction: column;
+
+      .checkboxes {
+        margin-bottom: 10px;
+
+        input[type="radio"] + label:before {
+          margin-right: 13px;
+        }
+
+        label {
+          font-weight: 300;
+          font-size: 20px;
+          line-height: 23px;
+          color: #510000;
+        }
+      }
+    }
+
+    .loading {
+      height: 50px;
+      width: 50px;
+      margin-left: auto;
+    }
+  }
+
+  &_login-btn {
+    height: 50px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #EC4C60 0%, #991B0E 100%);
+    text-transform: capitalize !important;
+  }
+
+  .loading-frame {
+    z-index: 1;
+    backdrop-filter: blur(5px);
+
+    img{
+      width: 64px;
+      height: 64px;
+    }
+  }
+
+  .input._required:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 52px;
+    border-style: solid;
+    border-top-right-radius: 14px;
+    top: 1px;
+    border-width: 0;
+    right: 1px;
+    background-color: #EC4C60;
+    opacity: .3;
+    border-bottom-right-radius: 14px;
+    z-index: 1;
+  }
+
+  .input._required:after {
+    content: '*';
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 54px;
+    color: #6F1717;
+    font-size: 18px;
+    font-family: Roboto;
+    line-height: 34px;
+    top: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .ref-code__toggler {
+    margin-top: 20px;
+  }
+
+  .ref-code__input {
+    max-height: 0;
+    min-height: 0;
+    transition: .2s;
+    opacity: 0;
+    overflow: hidden;
+
+    &--active {
+      max-height: 100px;
+      opacity: 1;
+    }
+  }
+
+  .work-type__button {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid #858585;
+    background-color: transparent;
+    border-radius: 14px;
+    text-align: left;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .street {
+    margin-top: 20px;
+  }
+}
+
+.restore-password-block {
+  display: flex;
+  justify-content: center;
+  height: 54px;
+  align-self: flex-start;
+  margin: 38px 0 0 12px;
+}
+
+.restore-password-block__button {
+  &:disabled {
+    background: #dadada;
+    border-color: #dbdbdb;
+    cursor: default;
+  }
+}
+
+.sign-in__password-block {
+  display: flex;
+}
+
+.password-block__input {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  .buttons {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.alert-container {
+  display: flex;
+  justify-content: center;
+}
+
+.send_to_whatsapp_checkbox {
+  margin-bottom: 40px;
+}
+
+/* LOGIN MODAL CLOSE + COMPACT SIZE FIX 2026-06-03
+   Keep existing auth logic untouched. Adds visible close button and makes the
+   auth window smaller so there is always normal backdrop area to tap. */
+.login-modal-overlay {
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.login-modal {
+  position: relative;
+  width: min(420px, calc(100vw - 32px));
+  max-width: 420px;
+  max-height: min(88dvh, 640px);
+  padding: 14px 12px 12px;
+  border-radius: 18px;
+  box-shadow: 0 20px 52px rgba(15, 23, 42, .22);
+  -webkit-overflow-scrolling: touch;
+
+  &__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: #F4F5F7;
+    color: #7A7F89;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: none;
+    transform: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: #EBEDF0;
+      color: #111827;
+      outline: none;
+      box-shadow: none;
+      transform: none;
+    }
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 16px 12px 14px;
+
+    legend {
+      padding: 0 34px;
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+
+  .tabs {
+    margin-bottom: 14px;
+  }
+
+  .login-form__input {
+    margin-bottom: 20px;
+  }
+
+  .restore-password-block {
+    height: auto;
+    margin: 18px 0 0 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .login-modal-overlay {
+    padding: 14px;
+  }
+
+  .login-modal {
+    width: min(390px, calc(100vw - 28px));
+    max-height: calc(100dvh - 32px);
+    padding: 12px 10px 10px;
+    border-radius: 17px;
+
+    &__close {
+      top: 7px;
+      right: 7px;
+      width: 28px;
+      height: 28px;
+      font-size: 21px;
+    }
+
+    fieldset {
+      padding: 14px 10px 12px;
+
+      legend {
+        padding: 0 32px;
+        font-size: 18px;
+        line-height: 22px;
+      }
+    }
+
+    .login-form__input {
+      margin-bottom: 16px;
+    }
+  }
+}

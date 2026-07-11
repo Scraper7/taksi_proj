@@ -1,0 +1,22 @@
+.rooms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 40px;
+  gap: 5px;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .1s;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+
+    &--active {
+      color: white;
+    }
+  }
+}

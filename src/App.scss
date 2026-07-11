@@ -1,0 +1,193 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+  background: #fffbf4;
+  margin: 0;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+html,
+#root {
+  height: 100%;
+  overflow: hidden;
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:active,
+a:hover,
+a {
+  text-decoration: none;
+  color: #666;
+}
+
+#root {
+  main {
+    max-width: 900px;
+    margin: auto;
+  }
+
+  .loading-frame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+
+    img {
+      max-width: 150px;
+      max-height: 150px;
+    }
+
+    .loading-frame__title {
+      margin-top: 30px;
+      font-size: 20px;
+      font-family: "Mulish", sans-serif;
+      font-weight: bolder;
+    }
+  }
+
+  textarea:focus,
+  input:focus,
+  button:focus,
+  select:focus {
+    outline: none;
+  }
+
+  .error-message {
+    font-family: "Mulish", sans-serif;
+    font-weight: normal;
+    margin: 0;
+    color: red;
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  //  custom scrollbar
+  /* width */
+  ::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.17);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .react-timekeeper {
+    position: fixed;
+    margin: 0 auto;
+    /* bottom: 50%; */
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .error-message-status {
+    color: red;
+    font-family: "Mulish", sans-serif;
+    text-align: center;
+    font-size: 20px;
+    margin: 0 auto;
+  }
+}
+
+img {
+  cursor: pointer;
+}
+
+.disabled {
+  filter: grayscale(1);
+  opacity: 0.3;
+  cursor: default;
+}
+
+.MuiPaper-root {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+* {
+  font-size: 18px;
+  box-sizing: border-box;
+  font-family: "Mulish", "Inter", sans-serif;
+}
+
+*:not(b) {
+  font-weight: 500;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+// Android Chrome performance guard: reduces compositor/GPU stalls when map,
+// polling, bottom sheets and timers are active together. Class is added from hooks.ts.
+.android-performance-mode {
+  .overlay,
+  .loading-frame,
+  .driver-map-active-order,
+  .driver-order-map-card,
+  .order-marker-hint,
+  .passenger-voting-form,
+  .mini-orders,
+  .modal {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .leaflet-container,
+  .leaflet-pane,
+  .leaflet-map-pane,
+  .leaflet-marker-pane,
+  .leaflet-tooltip-pane,
+  .leaflet-popup-pane,
+  .leaflet-zoom-animated,
+  .driver-map-active-order,
+  .driver-order-map-card,
+  .passenger-voting-form,
+  .mini-orders,
+  .modal {
+    will-change: auto !important;
+  }
+
+  .driver-map-active-order,
+  .driver-order-map-card,
+  .passenger-voting-form,
+  .mini-orders,
+  .modal,
+  .order-marker-hint {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

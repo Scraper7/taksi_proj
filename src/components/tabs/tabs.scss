@@ -1,0 +1,46 @@
+.tabs {
+   display: flex;
+   justify-content: space-between;
+   background-color: #DFDFDF;
+   border-radius: 4px;
+
+   &__label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #9B9B9C;
+   }
+
+   & > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100px;
+      &.small {
+         height: 50px;
+      }
+      width: 100px;
+      border-radius: 4px;
+      cursor: pointer;
+      .img {
+         height: 39px;
+         display: flex;
+         align-items: flex-end;
+         margin-bottom: 10px;
+         img {
+            width: 100%;
+            max-height: 39px;
+         }
+      }
+      &.is-active {
+         color: white;
+         img {
+            filter: brightness(0) invert(1);
+         }
+         .tabs__label {
+            color: white;
+         }
+      }
+   }
+}

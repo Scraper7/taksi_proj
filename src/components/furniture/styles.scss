@@ -1,0 +1,151 @@
+.furniture {
+  margin-top: 30px;
+
+  .input__label {
+    margin-bottom: 0;
+  }
+
+  &__slider {
+    background-color: transparent;
+    margin-top: 10px;
+  }
+
+  &__column {
+    padding: 0;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #858585;
+    transition: .1s;
+    background-color: white;
+    padding: 5px 20px;
+    height: 70px;
+    border-radius: 15px;
+    position: relative;
+    @media (max-width: 768px) {
+      padding: 5px 10px;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    &--active {
+      box-shadow: 0px 4px 4px 0px #00000040;
+      color: white;
+      border: 1px solid transparent;
+
+      .furniture__name {
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block !important;
+        font-weight: 500;
+        font-size: 21px;
+
+        &--chosen {
+          position: relative;
+          transform: none;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  &__view {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  &__name {
+    display: block;
+    margin-left: 10px;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 60px);
+    white-space: break-spaces;
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__image {
+    width: 50px;
+    height: 60px;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    @media (max-width: 768px) {
+      max-width: 50px;
+      max-height: 30px;
+    }
+  }
+  
+  &__input {
+    width: 50px;
+    height: 40px;
+    padding: 0 13px;
+    border: 1px solid #858585;
+    border-radius: 10px;
+    outline: none;
+    -moz-appearance: textfield;
+    
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      width: 40px;
+    }
+  }
+
+  &__change-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__change-button {
+    width: 25px;
+    border: 2px solid #b00000;
+    border-radius: 50%;
+    padding: 4px;
+
+    @media (max-width: 768px) {
+      width: 20px;
+    }
+  }
+
+  &__chosen {
+    margin-top: 20px;
+  }
+
+  .glide__slides {
+    margin: 0;
+    margin-bottom: 60px;
+  }
+
+  &__total {
+    background-color: #fff;
+    box-shadow: 0px 2px 4px 0px #00000040 inset;
+    border-radius: 10px;
+    padding: 10px 20px;
+
+    & > span {
+      font-weight: 500;
+      font-size: 32px;
+      vertical-align: sub
+    }
+  }
+}

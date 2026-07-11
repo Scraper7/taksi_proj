@@ -1,0 +1,311 @@
+@import "../../tools/mixins";
+
+$formPlaceholderHeight: 208px - 16px;
+$formContainerTop: -40px - 8px - 16px;
+
+.passenger {
+  &__mini-orders {
+    position: absolute;
+    z-index: 3;
+    margin-bottom: 20px;
+  }
+
+  &__form-map-container {
+    margin-top: -16px;
+    flex-grow: 1;
+    flex-basis: 100%;
+    z-index: 0;
+  }
+
+  &__form-placeholder {
+    flex: none;
+    width: 100%;
+    height: $formPlaceholderHeight;
+  }
+
+  &__form-container {
+    position: absolute;
+    top: $formContainerTop;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    overflow: hidden;
+    width: 100%;
+    min-height: min(520px, 100%);
+    max-height: 100%;
+    padding-top: 8px;
+    transition: top 0.5s ease-in-out;
+  }
+
+  &__draggable {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    row-gap: 16px;
+    padding: 16px;
+    border-radius: 16px 16px 0 0;
+    background-color: #ffffff;
+  }
+
+  &__swipe-line {
+    position: absolute;
+    top: 4px;
+    left: calc(50% - 57px);
+    width: 114px;
+    height: 4px;
+    background-color: #E7E7E7;
+    border-radius: 2px;
+  }
+
+  &__draggable--pinned > &__swipe-line {
+    opacity: 0.16;
+    pointer-events: none;
+  }
+
+  form {
+    position: relative;
+    z-index: 0;
+
+    &>h6 {
+      font-size: 25px;
+      color: #6f1717;
+      font-weight: 300;
+      margin: 0;
+      margin-top: 10px;
+      position: relative;
+      top: 30px;
+    }
+  }
+
+  details {
+    summary {
+      font-size: 18px;
+      font-weight: 300;
+      text-decoration: underline;
+      outline: none;
+      cursor: pointer;
+      list-style-type: none;
+      margin-bottom: 10px;
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &::after {
+        content: "";
+        display: inline-block;
+        height: 0px;
+        width: 0px;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        margin-left: 10px;
+      }
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    &[open] {
+      summary::after {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+.passenger {
+  &__mini-orders {
+    left: 0;
+    right: 0;
+    top: 10px;
+    justify-content: flex-end;
+    align-content: flex-start;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-bottom: 0;
+    padding-right: 18px;
+    padding-left: 18px;
+    pointer-events: auto;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__form-container--live-order {
+    top: auto;
+    bottom: 0;
+    min-height: 0;
+    max-height: min(82vh, 760px);
+    padding-top: 0;
+    overflow: visible;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  &__draggable--live-order {
+    overflow: visible;
+    padding: 0;
+    border-radius: 30px 30px 0 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &__draggable--live-order > &__swipe-line {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .passenger {
+    &__form-container--live-order {
+      max-height: 86vh;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .passenger {
+    height: 100dvh;
+    overflow: hidden;
+
+    &__mini-orders {
+      justify-content: flex-start;
+      max-height: none;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+
+    &__form-container {
+      top: auto;
+      bottom: 0;
+      min-height: 0;
+      max-height: calc(100dvh - 44px);
+      padding-top: 0;
+      overflow: visible;
+    }
+
+    &__form-container--live-order {
+      max-height: calc(100dvh - 48px);
+    }
+
+    &__form-map-container {
+      margin-top: 0;
+      min-height: 0;
+    }
+
+    &__form-placeholder {
+      display: none;
+      height: 0;
+    }
+
+    &__draggable {
+      row-gap: 7px;
+      padding: 8px;
+      max-height: min(45dvh, 390px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 16px 16px 0 0;
+      padding-bottom: max(18px, env(safe-area-inset-bottom, 0) + 14px);
+    }
+
+    &__draggable--live-order {
+      max-height: min(54dvh, 430px);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    &__swipe-line {
+      top: 3px;
+      left: calc(50% - 42px);
+      width: 84px;
+      height: 3px;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .passenger {
+    &__form-container {
+      top: -44px;
+    }
+
+    &__form-container--live-order {
+      top: auto;
+    }
+
+    &__draggable {
+      padding: 8px;
+      border-radius: 14px 14px 0 0;
+    }
+  }
+}
+
+
+@media (max-width: 560px) {
+  .passenger {
+    &__form-container {
+      bottom: 0;
+      padding-bottom: 0;
+    }
+
+    &__draggable {
+      max-height: calc(100dvh - 96px);
+      padding-bottom: max(8px, env(safe-area-inset-bottom, 0));
+      border-radius: 16px 16px 0 0;
+    }
+  }
+}
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .passenger__draggable {
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Mobile bottom breathing space for every passenger bottom panel state:
+   initial form, driver-offers/voting form, and active/locked order form. */
+@media (max-width: 560px) {
+  .passenger__form-container,
+  .passenger__form-container--live-order {
+    bottom: max(10px, calc(env(safe-area-inset-bottom, 0px) + 10px)) !important;
+  }
+
+  .passenger__draggable,
+  .passenger__draggable--live-order {
+    padding-bottom: max(14px, calc(env(safe-area-inset-bottom, 0px) + 12px)) !important;
+  }
+}
+
+/* 360x740 bottom sheet fix 2026-06-01
+   The old mobile rule top:-44px + later large max-height stretched the expanded panel too high.
+   Keep the old look, but cap only the expanded bottom-sheet height on narrow Android screens. */
+@media (max-width: 380px) and (max-height: 780px) {
+  .passenger__form-container:not(.passenger__form-container--live-order) {
+    top: auto !important;
+    bottom: max(6px, env(safe-area-inset-bottom, 0px)) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: min(64vh, 470px) !important;
+    max-height: min(64dvh, 470px) !important;
+    overflow: visible !important;
+  }
+
+  .passenger__draggable:not(.passenger__draggable--live-order) {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: min(58vh, 425px) !important;
+    max-height: min(58dvh, 425px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px)) !important;
+    background: #ffffff;
+  }
+}

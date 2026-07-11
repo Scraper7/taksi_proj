@@ -1,0 +1,320 @@
+.map-container {
+  height: calc(100vh - 100px);
+  width: 100%;
+  box-shadow: 0px 30px 12px rgba(0, 0, 0, 0.04);
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #FFFFFF;
+  margin: 0;
+  box-sizing: border-box;
+
+  &--modal {
+    border-radius: 9px;
+    height: 90%;
+    width: 90%;
+    z-index: 1000;
+    padding: 10px;
+
+    .leaflet-marker-icon {
+      z-index: 1100;
+    }
+  }
+
+  fieldset {
+    border-radius: 13px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #1E58EB;
+
+    legend {
+      margin: 0 auto;
+      padding: 0 15px 0 15px;
+      color: #0f2c76;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 26px;
+      text-align: center;
+    }
+
+    h3, h4 {
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 23px;
+      text-align: center;
+    }
+
+  }
+
+  .active {
+    background-color: aliceblue;
+  }
+
+  &.get-coords-map-modal {
+    max-width: none;
+  }
+
+  &__leaflet-host {
+    height: 100%;
+    width: 100%;
+  }
+
+  .map {
+    height: 100%;
+    width: 100%;
+  }
+
+  .leaflet-container img,
+  .leaflet-container svg,
+  .leaflet-container canvas,
+  .leaflet-pane img,
+  .leaflet-pane svg,
+  .leaflet-pane canvas {
+    max-width: none !important;
+    max-height: none !important;
+  }
+
+  .leaflet-overlay-pane svg,
+  .leaflet-overlay-pane canvas {
+    display: block !important;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  &__locate-button {
+    position: absolute;
+    right: 18px;
+    top: auto;
+    bottom: 84px;
+    z-index: 10000;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border: 0;
+    border-radius: 16px;
+    background: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    pointer-events: auto;
+    overflow: visible;
+    touch-action: manipulation;
+
+    &:hover,
+    &:active {
+      transform: none;
+      box-shadow: none;
+    }
+
+    img {
+      display: block;
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    &--passenger {
+      right: 18px;
+      top: auto;
+      bottom: 84px;
+    }
+
+    &--live-order {
+      right: 18px;
+      top: auto;
+      bottom: 38vh;
+    }
+  }
+
+  &__user-marker {
+    filter: drop-shadow(0 2px 5px rgba(30, 136, 255, .35));
+  }
+
+  &__driver-eta {
+    position: absolute;
+    left: 50%;
+    top: 112px;
+    bottom: auto;
+    z-index: 10001;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    max-width: calc(100% - 28px);
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .94);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .12);
+    color: #303030;
+    font-size: 12px;
+    line-height: 1.15;
+    transform: translateX(-50%);
+    pointer-events: none;
+    white-space: nowrap;
+
+    b {
+      font-weight: 500;
+      color: #555;
+    }
+
+    span {
+      font-weight: 700;
+      color: #222;
+    }
+  }
+
+  &.passenger__form-map-container--live-order {
+    .map-container__driver-eta {
+      top: 118px;
+      bottom: auto;
+    }
+  }
+
+  .map-modal__route {
+    position: absolute;
+    top: 10px;
+    width: fit-content;
+    max-width: 200px;
+    left: 50px;
+    height: fit-content;
+    background-color: yellow;
+    color: black;
+    border: solid black 2px;
+    border-radius: 7px;
+    z-index: 10001;
+    margin: auto;
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  &__center-marker {
+    width: 25px;
+    height: 41px;
+    z-index: 400;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    pointer-events: none;
+  }
+
+  .client-driver-marker {
+    background: transparent;
+    border: none;
+
+    img {
+      display: block;
+      width: 40px;
+      height: 40px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .28));
+    }
+  }
+
+  .modal-buttons {
+    position: absolute;
+    top: 96px;
+    bottom: auto;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 480;
+    &.z-indexed {
+      z-index: 1100;
+    }
+
+    .button__wrapper {
+      margin-right: 10px;
+      margin-top: 96px;
+    bottom: auto;
+      width: fit-content;
+
+      button {
+        padding: 0 20px;
+      }
+    }
+  }
+
+  .leaflet-top.leaflet-left {
+    z-index: 400;
+  }
+
+  .leaflet-control{
+    display: none;
+    margin-top:32px;
+
+    @media screen and (min-width: 1025px) {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .map-container {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    box-shadow: none;
+  }
+
+  .map-container__locate-button--live-order {
+    bottom: 55vh;
+    right: 14px;
+  }
+}
+
+.smooth-rotating-marker {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.smooth-rotating-marker.leaflet-marker-icon,
+.client-driver-marker.leaflet-marker-icon {
+  position: relative;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.smooth-rotating-marker__image,
+.client-driver-marker .smooth-rotating-marker__image,
+.driver-arrow-divicon .smooth-rotating-marker__image {
+  display: block !important;
+  width: 40px !important;
+  height: 40px !important;
+  object-fit: contain;
+  transform-origin: 50% 50%;
+  transition: transform .18s linear;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.smooth-rotating-marker__wrap {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 40px;
+  overflow: visible;
+}
+
+.smooth-rotating-marker__fallback-arrow {
+  display: none;
+}
+
+.smooth-rotating-marker__accent-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
+  z-index: 2;
+  pointer-events: none;
+}

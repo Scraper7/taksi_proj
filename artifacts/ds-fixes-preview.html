@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"/><title>DS fixes preview</title>
+<style>
+  body{margin:0;background:#cfe3c8;font-family:Inter,Arial,sans-serif;color:#1b2430}
+  .wrap{padding:24px 30px}
+  h2{font-size:15px;margin:22px 0 30px}
+  .row{display:flex;gap:70px;align-items:flex-end;flex-wrap:wrap}
+  .cell{display:flex;flex-direction:column;align-items:center;gap:10px}
+  .cap{font-size:12px;font-weight:700;margin-top:18px}
+  .order-marker{display:inline-block;position:relative}
+  .order-marker__pin{display:block;position:relative;z-index:6;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+  /* хинт как в приложении (ds-status) */
+  .order-marker-hint{position:absolute;left:50%;transform:translateX(-50%);border-radius:6px;
+    box-shadow:0 2px 6px rgba(0,0,0,.24);background:rgba(255,255,255,var(--a,.85));
+    width:max-content;min-width:102px;max-width:168px;padding:5px 9px;text-align:center;z-index:4;pointer-events:none}
+  .order-marker-hint__primary{font-size:12px;line-height:15px;font-weight:800;white-space:nowrap}
+  .order-marker-hint__secondary{margin-top:2px;font-size:11px;line-height:13px;font-weight:700;color:#5a5a5a;white-space:nowrap}
+  .old .order-marker-hint{bottom:48px}  /* было */
+  .new .order-marker-hint{bottom:58px}  /* стало */
+  .scale3{transform:scale(3);transform-origin:bottom center;margin:60px 70px 50px}
+  /* кластер info */
+  .ds-cluster--info{display:inline-flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:104px;
+    padding:6px 9px;border-radius:12px;border:1px solid rgba(0,0,0,.12);box-shadow:0 4px 14px rgba(0,0,0,.26);
+    background:rgba(255,255,255,var(--a,.97))}
+  .ds-cluster__count{align-self:center;font-weight:800;font-size:16px;color:#201712}
+  .ds-cluster__row{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:#3a3a3a;white-space:nowrap}
+  .ds-cluster__row b{color:#201712}
+  .ds-cluster__dot{width:8px;height:8px;border-radius:50%}
+  .scale2{transform:scale(2);transform-origin:bottom center;margin:30px 50px}
+  /* фильтры */
+  .ds-filters{display:inline-flex;gap:8px;background:#fff;padding:8px;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:10px;background:#f1f1f1;font-size:13px;font-weight:600}
+</style></head>
+<body><div class="wrap">
+  <h2>1. Хинт-карточка: было (ложится на иконку) → стало (отступ вверх, иконка видна, пин z-order выше карточки)</h2>
+  <div class="row" id="hints"></div>
+
+  <h2>2. Карточка кластера подчиняется ползунку прозрачности (--ds-hint-bg-alpha)</h2>
+  <div class="row" id="clusters"></div>
+
+  <h2>3. Панель фильтров без «Маршрутки»</h2>
+  <div class="ds-filters">
+    <span class="chip">👤 Пассажиры</span>
+    <span class="chip">📦 Доставка</span>
+    <span class="chip">🗳 Голосование</span>
+    <span class="chip">↗ По пути</span>
+  </div>
+</div>
+<script>
+const DS={beige:'#F2E7C9',purple:'#7B61FF',yellow:'#FFC107',green:'#2EAF5B',grey:'#9AA0A6',red:'#E53935',ink:'#2b2b2b',orange:'#FB8C00',blue:'#2196F3'};
+const NEW_PATH="M20.9 30.6 A 12 12 0 1 1 27.1 30.6 Q 25.6 40.5 24 49 Q 22.4 40.5 20.9 30.6 Z";
+function deliveryGlyph(){return "<g><rect x='18.5' y='13.5' width='11' height='11' rx='1.5' fill='"+DS.blue+"' stroke='"+DS.ink+"' stroke-width='1'/><path d='M24 13.5 L24 24.5 M18.5 19 L29.5 19' fill='none' stroke='#fff' stroke-width='1.2' stroke-opacity='0.9'/></g>";}
+function ring(age){const rem=Math.max(0,100-age),r=10,c=2*Math.PI*r,d=(rem/100)*c,col=rem>80?DS.green:rem>40?DS.yellow:rem>12?DS.orange:DS.red;
+  return "<circle cx='24' cy='19' r='"+r+"' fill='none' stroke='rgba(43,43,43,0.18)' stroke-width='2'/><circle cx='24' cy='19' r='"+r+"' fill='none' stroke='"+col+"' stroke-width='2' stroke-linecap='round' stroke-dasharray='"+d.toFixed(2)+" "+c.toFixed(2)+"' transform='rotate(-90 24 19)'/>";}
+function pin(color){return "<svg class='order-marker__pin' width='48' height='52' viewBox='0 0 48 52'><path d='"+NEW_PATH+"' fill='"+color+"' stroke='"+DS.ink+"' stroke-width='1' stroke-linejoin='round' stroke-linecap='round'/>"+ring(30)+deliveryGlyph()+"</svg>";}
+function marker(cls){return "<div class='order-marker "+cls+"'><div class='order-marker-hint order-marker-hint--ds-status'><div class='order-marker-hint__primary'>1,2 км · 5 мин</div><div class='order-marker-hint__secondary'>Доставка</div></div>"+pin(DS.purple)+"</div>";}
+function cell(html,cap,cls){return "<div class='cell'><div class='"+(cls||'scale3')+"'>"+html+"</div><div class='cap'>"+cap+"</div></div>";}
+
+document.getElementById('hints').innerHTML =
+  cell("<div style='--a:1'>"+marker('old')+"</div>",'БЫЛО (bottom:48, карта на иконке)') +
+  cell("<div style='--a:1'>"+marker('new')+"</div>",'СТАЛО (bottom:58 + зазор)');
+
+function clusterCard(){return "<div class='ds-cluster--info'><div class='ds-cluster__count'>12</div>"+
+  "<div class='ds-cluster__row'><span class='ds-cluster__dot' style='background:"+DS.purple+"'></span><b>5</b> голосуют</div>"+
+  "<div class='ds-cluster__row'><span class='ds-cluster__dot' style='background:"+DS.yellow+"'></span><b>4</b> ответили</div>"+
+  "<div class='ds-cluster__row'><span class='ds-cluster__dot' style='background:"+DS.green+"'></span><b>3</b> победили</div></div>";}
+document.getElementById('clusters').innerHTML =
+  cell("<div style='--a:1'>"+clusterCard()+"</div>",'alpha 100%','scale2') +
+  cell("<div style='--a:.85'>"+clusterCard()+"</div>",'alpha 85% (как хинты)','scale2') +
+  cell("<div style='--a:.4'>"+clusterCard()+"</div>",'alpha 40% (ползунок влево)','scale2');
+</script></body></html>

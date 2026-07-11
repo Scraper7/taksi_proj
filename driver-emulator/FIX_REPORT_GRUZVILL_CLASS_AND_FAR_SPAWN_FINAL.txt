@@ -1,0 +1,22 @@
+FIX REPORT: gruzvill driver class and far spawn
+
+1. Fixed why only part of drivers appeared in passenger candidate list.
+   Logs showed backend rejected some drivers with: "driver car has wrong class".
+
+2. Added gruzvillFallbackCarClassId = 1.
+   When backend/order details do not expose required b_car_class, emulator still knows which class gruzvill orders use by default and can try to align driver cars before sending candidate response.
+
+3. Made wrong car class detection stronger.
+   The simulator now checks message, response.message, response.data, detail, description and full JSON, so "driver car has wrong class" always enters the repair/retry branch instead of only logging send failed.
+
+4. Improved car class repair payload.
+   The simulator now sends cc_id in data JSON together with existing car fields, matching the real frontend editCar behavior more closely.
+
+5. Increased driver spawn distance from pickup.
+   spawnNearOrderMinMeters: 2800
+   spawnNearOrderMaxMeters: 6500
+
+6. Existing manual-choice flow was not changed:
+   candidates are sent only as candidates;
+   passenger must press Select;
+   no driver moves before passenger selection.

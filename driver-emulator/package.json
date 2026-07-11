@@ -1,0 +1,24 @@
+{
+  "name": "taxi-driver-simulator",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Simulator for registering and emulating multiple taxi drivers for ibronevik taxi API",
+  "main": "src/simulator.js",
+  "scripts": {
+    "start": "node src/simulator.js",
+    "check": "node src/simulator.js --check",
+    "once": "node src/simulator.js --once",
+    "dry": "node src/simulator.js --dry",
+    "register": "node src/register-drivers.js",
+    "register:dry": "node src/register-drivers.js --dry",
+    "doctor": "node src/doctor.js",
+    "panel": "node src/control-panel.js",
+    "panel:auto": "node src/control-panel.js",
+    "generate:order": "node src/order-generator.js",
+    "generate:orders": "node src/order-generator.js --count 3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

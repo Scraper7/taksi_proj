@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="/custom-ui-fixes.css"></head>
+<body>
+<div id="mapsCoverage" style="">&nbsp;<ymaps class="ymaps-2-1-75-map" style="width: 938px; height: 400px;">
+    <ymaps class="ymaps-2-1-75-map ymaps-2-1-75-i-ua_js_yes ymaps-2-1-75-map-bg ymaps-2-1-75-islets_map-lang-ru"
+           style="width: 938px; height: 400px; z-index: 0;">
+        <ymaps class="ymaps-2-1-75-inner-panes">
+            <ymaps class="ymaps-2-1-75-events-pane ymaps-2-1-75-user-selection-none" unselectable="on"
+                   style="height: 100%; width: 100%; top: 0px; left: 0px; position: absolute; z-index: 2500; cursor: url(&quot;https://api-maps.yandex.ru/2.1.75/build/release/images/cursor/grab.cur&quot;) 16 16, url(&quot;https://api-maps.yandex.ru/2.1.75/build/release/images/cursor/grab.cur&quot;), move;"></ymaps>
+            <ymaps class="ymaps-2-1-75-ground-pane"
+                   style="top: 0px; left: 0px; position: absolute; transform: translate3d(0px, 0px, 0px) scale(1, 1); z-index: 501;">
+                <ymaps style="z-index: 150; position: absolute;">
+                    <canvas style="position: absolute; width: 1194px; height: 656px; left: -128px; top: -128px;"
+                            height="1312" width="2388"></canvas>
+                </ymaps>
+            </ymaps>
+            <ymaps class="ymaps-2-1-75-copyrights-pane"
+                   style="height: 0px; bottom: 0px; right: 0px; top: auto; left: 0px; position: absolute; z-index: 5002;">
+                <ymaps>
+                    <ymaps class="ymaps-2-1-75-copyright" style="">
+                        <ymaps class="ymaps-2-1-75-copyright__fog">…</ymaps>
+                        <ymaps class="ymaps-2-1-75-copyright__wrap">
+                            <ymaps class="ymaps-2-1-75-copyright__layout">
+                                <ymaps class="ymaps-2-1-75-copyright__content-cell">
+                                    <ymaps class="ymaps-2-1-75-copyright__content">
+                                        <ymaps class="ymaps-2-1-75-copyright__text">© Яндекс</ymaps>
+                                        <ymaps class="ymaps-2-1-75-copyright__agreement">&nbsp;<a
+                                                class="ymaps-2-1-75-copyright__link" target="_blank"
+                                                href="https://yandex.ru/legal/maps_termsofuse/?lang=ru">Условия
+                                            использования</a></ymaps>
+                                    </ymaps>
+                                </ymaps>
+                                <ymaps class="ymaps-2-1-75-copyright__logo-cell"><a class="ymaps-2-1-75-copyright__logo"
+                                                                                    href="" target="_blank"></a></ymaps>
+                            </ymaps>
+                        </ymaps>
+                    </ymaps>
+                </ymaps>
+            </ymaps>
+            <ymaps class="ymaps-2-1-75-controls-pane"
+                   style="width: 100%; top: 0px; left: 0px; position: absolute; z-index: 4503;">
+                <ymaps class="ymaps-2-1-75-controls__toolbar" style="margin-top: 10px;">
+                    <ymaps class="ymaps-2-1-75-controls__toolbar_left">
+                        <ymaps style="margin-right: 0px; margin-left: 10px; position: inherit;"
+                               class="ymaps-2-1-75-controls__control_toolbar ymaps-2-1-75-user-selection-none"
+                               unselectable="on">
+                            <ymaps>
+                                <ymaps class="ymaps-2-1-75-float-button ymaps-2-1-75-_hidden-text"
+                                       style="max-width: 90px" title="Определить ваше местоположение">
+                                    <ymaps class="ymaps-2-1-75-float-button-icon ymaps-2-1-75-float-button-icon_icon_geolocation"></ymaps>
+                                    <ymaps class="ymaps-2-1-75-float-button-text"></ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                        <ymaps style="margin-right: 0px; margin-left: 10px; position: inherit;"
+                               class="ymaps-2-1-75-controls__control_toolbar">
+                            <ymaps>
+                                <ymaps class="ymaps-2-1-75-searchbox">
+                                    <ymaps id="id_158326008685057963095" unselectable="on"
+                                           class="ymaps-2-1-75-user-selection-none">
+                                        <ymaps>
+                                            <ymaps class="ymaps-2-1-75-float-button ymaps-2-1-75-_hidden-icon"
+                                                   style="max-width: 72px" title="Найти">
+                                                <ymaps class="ymaps-2-1-75-float-button-icon"></ymaps>
+                                                <ymaps class="ymaps-2-1-75-float-button-text">Найти</ymaps>
+                                            </ymaps>
+                                        </ymaps>
+                                    </ymaps>
+                                    <ymaps id="id_158326008685057963096"></ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                        <ymaps style="margin-right: 0px; margin-left: 10px; position: inherit;"
+                               class="ymaps-2-1-75-controls__control_toolbar">
+                            <ymaps>
+                                <ymaps class="ymaps-2-1-75-listbox ymaps-2-1-75-listbox_opened_no" style="width: 92px;">
+                                    <ymaps class="ymaps-2-1-75-listbox__button ymaps-2-1-75-_visible-arrow ymaps-2-1-75-_hidden-icon ymaps-2-1-75-user-selection-none"
+                                           unselectable="on" title="Мегафон">
+                                        <ymaps class="ymaps-2-1-75-listbox__button-icon"></ymaps>
+                                        <ymaps class="ymaps-2-1-75-listbox__button-text">Мегафон</ymaps>
+                                        <ymaps class="ymaps-2-1-75-listbox__button-arrow"></ymaps>
+                                    </ymaps>
+                                    <ymaps class="ymaps-2-1-75-listbox__panel ymaps-2-1-75-i-custom-scroll"
+                                           style="transform: translate3d(0px, 0px, 0px) scale(1, 1);">
+                                        <ymaps class="ymaps-2-1-75-listbox__list" style="max-height: 999999px;">
+                                            <ymaps>
+                                                <ymaps>
+                                                    <ymaps id="id_158326008685057963084">
+                                                        <ymaps unselectable="on"
+                                                               class="ymaps-2-1-75-user-selection-none">
+                                                            <ymaps class="ymaps-2-1-75-listbox__list-item ymaps-2-1-75-listbox__list-item_selected_no">
+                                                                <ymaps class="ymaps-2-1-75-listbox__list-item-text">3G
+                                                                </ymaps>
+                                                            </ymaps>
+                                                        </ymaps>
+                                                    </ymaps>
+                                                </ymaps>
+                                            </ymaps>
+                                            <ymaps>
+                                                <ymaps>
+                                                    <ymaps id="id_158326008685057963085">
+                                                        <ymaps unselectable="on"
+                                                               class="ymaps-2-1-75-user-selection-none">
+                                                            <ymaps class="ymaps-2-1-75-listbox__list-item ymaps-2-1-75-listbox__list-item_selected_no">
+                                                                <ymaps class="ymaps-2-1-75-listbox__list-item-text">4G
+                                                                </ymaps>
+                                                            </ymaps>
+                                                        </ymaps>
+                                                    </ymaps>
+                                                </ymaps>
+                                            </ymaps>
+                                        </ymaps>
+                                    </ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                        <ymaps style="margin-right: 0px; margin-left: 10px; position: inherit;"
+                               class="ymaps-2-1-75-controls__control_toolbar">
+                            <ymaps>
+                                <ymaps class="ymaps-2-1-75-listbox ymaps-2-1-75-listbox_opened_no" style="width: 66px;">
+                                    <ymaps class="ymaps-2-1-75-listbox__button ymaps-2-1-75-_visible-arrow ymaps-2-1-75-_hidden-icon ymaps-2-1-75-user-selection-none"
+                                           unselectable="on" title="МТС">
+                                        <ymaps class="ymaps-2-1-75-listbox__button-icon"></ymaps>
+                                        <ymaps class="ymaps-2-1-75-listbox__button-text">МТС</ymaps>
+                                        <ymaps class="ymaps-2-1-75-listbox__button-arrow"></ymaps>
+                                    </ymaps>
+                                    <ymaps class="ymaps-2-1-75-listbox__panel ymaps-2-1-75-i-custom-scroll"
+                                           style="transform: translate3d(0px, 0px, 0px) scale(1, 1);">
+                                        <ymaps class="ymaps-2-1-75-listbox__list" style="max-height: 999999px;">
+                                            <ymaps>
+                                                <ymaps>
+                                                    <ymaps id="id_158326008685057963082">
+                                                        <ymaps unselectable="on"
+                                                               class="ymaps-2-1-75-user-selection-none">
+                                                            <ymaps class="ymaps-2-1-75-listbox__list-item ymaps-2-1-75-listbox__list-item_selected_no">
+                                                                <ymaps class="ymaps-2-1-75-listbox__list-item-text">3G
+                                                                </ymaps>
+                                                            </ymaps>
+                                                        </ymaps>
+                                                    </ymaps>
+                                                </ymaps>
+                                            </ymaps>
+                                            <ymaps>
+                                                <ymaps>
+                                                    <ymaps id="id_158326008685057963083">
+                                                        <ymaps unselectable="on"
+                                                               class="ymaps-2-1-75-user-selection-none">
+                                                            <ymaps class="ymaps-2-1-75-listbox__list-item ymaps-2-1-75-listbox__list-item_selected_no">
+                                                                <ymaps class="ymaps-2-1-75-listbox__list-item-text">4G
+                                                                </ymaps>
+                                                            </ymaps>
+                                                        </ymaps>
+                                                    </ymaps>
+                                                </ymaps>
+                                            </ymaps>
+                                        </ymaps>
+                                    </ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                        <ymaps style="margin-right: 0px; margin-left: 10px; position: inherit;"
+                               class="ymaps-2-1-75-controls__control_toolbar">
+                            <ymaps>
+                                <ymaps class="ymaps-2-1-75-listbox ymaps-2-1-75-listbox_opened_no" style="width: 82px;">
+                                    <ymaps class="ymaps-2-1-75-listbox__button ymaps-2-1-75-_visible-arrow ymaps-2-1-75-_hidden-icon ymaps-2-1-75-user-selection-none"
+                                           unselectable="on" title="Билайн">
+                                        <ymaps class="ymaps-2-1-75-listbox__button-icon"></ymaps>
+                                        <ymaps class="ymaps-2-1-75-listbox__button-text">Билайн</ymaps>
+                                        <ymaps class="ymaps-2-1-75-listbox__button-arrow"></ymaps>
+                                    </ymaps>
+                                    <ymaps class="ymaps-2-1-75-listbox__panel ymaps-2-1-75-i-custom-scroll"
+                                           style="transform: translate3d(0px, 0px, 0px) scale(1, 1);">
+                                        <ymaps class="ymaps-2-1-75-listbox__list" style="max-height: 999999px;">
+                                            <ymaps>
+                                                <ymaps>
+                                                    <ymaps id="id_158326008685057963080">
+                                                        <ymaps unselectable="on"
+                                                               class="ymaps-2-1-75-user-selection-none">
+                                                            <ymaps class="ymaps-2-1-75-listbox__list-item ymaps-2-1-75-listbox__list-item_selected_no">
+                                                                <ymaps class="ymaps-2-1-75-listbox__list-item-text">3G
+                                                                </ymaps>
+                                                            </ymaps>
+                                                        </ymaps>
+                                                    </ymaps>
+                                                </ymaps>
+                                            </ymaps>
+                                            <ymaps>
+                                                <ymaps>
+                                                    <ymaps id="id_158326008685057963081">
+                                                        <ymaps unselectable="on"
+                                                               class="ymaps-2-1-75-user-selection-none">
+                                                            <ymaps class="ymaps-2-1-75-listbox__list-item ymaps-2-1-75-listbox__list-item_selected_no">
+                                                                <ymaps class="ymaps-2-1-75-listbox__list-item-text">4G
+                                                                </ymaps>
+                                                            </ymaps>
+                                                        </ymaps>
+                                                    </ymaps>
+                                                </ymaps>
+                                            </ymaps>
+                                        </ymaps>
+                                    </ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                        <ymaps style="margin-right: 0px; margin-left: 10px; position: inherit;"
+                               class="ymaps-2-1-75-controls__control_toolbar">
+                            <ymaps>
+                                <ymaps class="ymaps-2-1-75-listbox ymaps-2-1-75-listbox_opened_no" style="width: 74px;">
+                                    <ymaps class="ymaps-2-1-75-listbox__button ymaps-2-1-75-_visible-arrow ymaps-2-1-75-_hidden-icon ymaps-2-1-75-user-selection-none"
+                                           unselectable="on" title="Теле2">
+                                        <ymaps class="ymaps-2-1-75-listbox__button-icon"></ymaps>
+                                        <ymaps class="ymaps-2-1-75-listbox__button-text">Теле2</ymaps>
+                                        <ymaps class="ymaps-2-1-75-listbox__button-arrow"></ymaps>
+                                    </ymaps>
+                                    <ymaps class="ymaps-2-1-75-listbox__panel ymaps-2-1-75-i-custom-scroll"
+                                           style="transform: translate3d(0px, 0px, 0px) scale(1, 1);">
+                                        <ymaps class="ymaps-2-1-75-listbox__list" style="max-height: 999999px;">
+                                            <ymaps>
+                                                <ymaps>
+                                                    <ymaps id="id_158326008685057963078">
+                                                        <ymaps unselectable="on"
+                                                               class="ymaps-2-1-75-user-selection-none">
+                                                            <ymaps class="ymaps-2-1-75-listbox__list-item ymaps-2-1-75-listbox__list-item_selected_no">
+                                                                <ymaps class="ymaps-2-1-75-listbox__list-item-text">3G
+                                                                </ymaps>
+                                                            </ymaps>
+                                                        </ymaps>
+                                                    </ymaps>
+                                                </ymaps>
+                                            </ymaps>
+                                            <ymaps>
+                                                <ymaps>
+                                                    <ymaps id="id_158326008685057963079">
+                                                        <ymaps unselectable="on"
+                                                               class="ymaps-2-1-75-user-selection-none">
+                                                            <ymaps class="ymaps-2-1-75-listbox__list-item ymaps-2-1-75-listbox__list-item_selected_no">
+                                                                <ymaps class="ymaps-2-1-75-listbox__list-item-text">4G
+                                                                </ymaps>
+                                                            </ymaps>
+                                                        </ymaps>
+                                                    </ymaps>
+                                                </ymaps>
+                                            </ymaps>
+                                        </ymaps>
+                                    </ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                        <ymaps style="margin-right: 0px; margin-left: 10px; position: inherit;"
+                               class="ymaps-2-1-75-controls__control_toolbar ymaps-2-1-75-user-selection-none"
+                               unselectable="on">
+                            <ymaps>
+                                <ymaps class="ymaps-2-1-75-float-button ymaps-2-1-75-_hidden-icon"
+                                       style="max-width: 90px" title="SkyLink">
+                                    <ymaps class="ymaps-2-1-75-float-button-icon"></ymaps>
+                                    <ymaps class="ymaps-2-1-75-float-button-text">SkyLink</ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                    </ymaps>
+                    <ymaps class="ymaps-2-1-75-controls__toolbar_right">
+                        <ymaps style="margin-right: 10px; margin-left: 0px; position: inherit;"
+                               class="ymaps-2-1-75-controls__control_toolbar ymaps-2-1-75-user-selection-none"
+                               unselectable="on">
+                            <ymaps>
+                                <ymaps class="ymaps-2-1-75-float-button ymaps-2-1-75-_hidden-text"
+                                       style="max-width: 28px" title="">
+                                    <ymaps class="ymaps-2-1-75-float-button-icon ymaps-2-1-75-float-button-icon_icon_expand"></ymaps>
+                                    <ymaps class="ymaps-2-1-75-float-button-text"></ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                    </ymaps>
+                </ymaps>
+                <ymaps class="ymaps-2-1-75-controls__bottom" style="top: 400px;">
+                    <ymaps style="margin-right: 0px; margin-left: 0px; position: inherit; bottom: 30px; top: auto; right: 10px; left: auto;"
+                           class="ymaps-2-1-75-controls__control">
+                        <ymaps>
+                            <ymaps style="display: block;">
+                                <ymaps style="display: inline-block; height: 100%; vertical-align: top;">
+                                    <ymaps id="id_158326008685057963086">
+                                        <ymaps>
+                                            <ymaps class="ymaps-2-1-75-scaleline" style="width: 87px;">
+                                                <ymaps class="ymaps-2-1-75-scaleline__left">
+                                                    <ymaps class="ymaps-2-1-75-scaleline__left-border"></ymaps>
+                                                    <ymaps class="ymaps-2-1-75-scaleline__left-line"></ymaps>
+                                                </ymaps>
+                                                <ymaps class="ymaps-2-1-75-scaleline__center">
+                                                    <ymaps class="ymaps-2-1-75-scaleline__label">30&nbsp;км</ymaps>
+                                                </ymaps>
+                                                <ymaps class="ymaps-2-1-75-scaleline__right">
+                                                    <ymaps class="ymaps-2-1-75-scaleline__right-border"></ymaps>
+                                                    <ymaps class="ymaps-2-1-75-scaleline__right-line"></ymaps>
+                                                </ymaps>
+                                            </ymaps>
+                                        </ymaps>
+                                    </ymaps>
+                                </ymaps>
+                                <ymaps style="display: inline-block; width: 10px; height: 0"></ymaps>
+                                <ymaps style="display: inline-block;">
+                                    <ymaps id="id_158326008685057963087" unselectable="on"
+                                           class="ymaps-2-1-75-user-selection-none">
+                                        <ymaps>
+                                            <ymaps class="ymaps-2-1-75-float-button ymaps-2-1-75-_hidden-text"
+                                                   style="max-width: 28px" title="Измерение расстояний на карте">
+                                                <ymaps class="ymaps-2-1-75-float-button-icon ymaps-2-1-75-float-button-icon_icon_ruler"></ymaps>
+                                                <ymaps class="ymaps-2-1-75-float-button-text"></ymaps>
+                                            </ymaps>
+                                        </ymaps>
+                                    </ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                    </ymaps>
+                </ymaps>
+                <ymaps style="margin-right: 0px; margin-left: 0px; position: inherit; bottom: auto; top: 108px; right: auto; left: 10px;"
+                       class="ymaps-2-1-75-controls__control">
+                    <ymaps>
+                        <ymaps class="ymaps-2-1-75-zoom" style="height: 150px">
+                            <ymaps class="ymaps-2-1-75-zoom__plus ymaps-2-1-75-zoom__button ymaps-2-1-75-float-button ymaps-2-1-75-user-selection-none"
+                                   unselectable="on">
+                                <ymaps class="ymaps-2-1-75-zoom__icon ymaps-2-1-75-float-button-icon"></ymaps>
+                            </ymaps>
+                            <ymaps class="ymaps-2-1-75-zoom__minus ymaps-2-1-75-zoom__button ymaps-2-1-75-float-button ymaps-2-1-75-user-selection-none"
+                                   unselectable="on">
+                                <ymaps class="ymaps-2-1-75-zoom__icon ymaps-2-1-75-float-button-icon"></ymaps>
+                            </ymaps>
+                            <ymaps class="ymaps-2-1-75-zoom__scale">
+                                <ymaps class="ymaps-2-1-75-zoom__runner ymaps-2-1-75-zoom__button ymaps-2-1-75-float-button ymaps-2-1-75-zoom__runner__transition ymaps-2-1-75-touch-action-none ymaps-2-1-75-user-selection-none"
+                                       unselectable="on" style="top: 60px;">
+                                    <ymaps class="ymaps-2-1-75-zoom__icon ymaps-2-1-75-float-button-icon ymaps-2-1-75-float-button-icon_icon_runner"></ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                    </ymaps>
+                </ymaps>
+            </ymaps>
+            <ymaps class="ymaps-2-1-75-searchpanel-pane"
+                   style="width: 100%; top: 0px; left: 0px; position: absolute; z-index: 6509;">
+                <ymaps>
+                    <ymaps class="ymaps-2-1-75-search ymaps-2-1-75-search_layout_panel ymaps-2-1-75-searchbox__panel-layout">
+                        <ymaps class="ymaps-2-1-75-search__layout">
+                            <ymaps id="id_158326008685057963097">
+                                <ymaps>
+                                    <ymaps class="ymaps-2-1-75-searchbox__input-cell">
+                                        <ymaps class="ymaps-2-1-75-searchbox-input"><input
+                                                class="ymaps-2-1-75-searchbox-input__input"
+                                                placeholder="Адрес или объект">
+                                            <ymaps class="ymaps-2-1-75-searchbox-input__clear-button"></ymaps>
+                                        </ymaps>
+                                        <ymaps class="ymaps-2-1-75-searchbox-list-button"></ymaps>
+                                    </ymaps>
+                                    <ymaps class="ymaps-2-1-75-searchbox__button-cell">
+                                        <ymaps class="ymaps-2-1-75-searchbox-button ymaps-2-1-75-user-selection-none"
+                                               unselectable="on">
+                                            <ymaps class="ymaps-2-1-75-searchbox-button-text">Найти</ymaps>
+                                        </ymaps>
+                                    </ymaps>
+                                </ymaps>
+                            </ymaps>
+                            <ymaps class="ymaps-2-1-75-searchbox__fold-button-cell">
+                                <ymaps class="ymaps-2-1-75-searchbox__fold-button">
+                                    <ymaps class="ymaps-2-1-75-searchbox__fold-button-icon"></ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                        <ymaps id="id_158326008685057963098">
+                            <ymaps>
+                                <ymaps class="ymaps-2-1-75-islets_serp-popup ymaps-2-1-75-islets__hidden">
+                                    <ymaps class="ymaps-2-1-75-islets_serp-popup__tail"></ymaps>
+                                    <ymaps class="ymaps-2-1-75-islets_serp" style="max-height: 350px;">
+                                        <ymaps id="id_158326008685057963099">
+                                            <ymaps></ymaps>
+                                        </ymaps>
+                                    </ymaps>
+                                </ymaps>
+                            </ymaps>
+                        </ymaps>
+                    </ymaps>
+                </ymaps>
+            </ymaps>
+        </ymaps>
+    </ymaps>
+</ymaps>
+</div>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;onload=coverageMap" defer=""></script>
+<script src="/custom-ui-fixes.js"></script></body>
+</html>
+

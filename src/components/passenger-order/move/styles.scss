@@ -1,0 +1,12 @@
+.move-type {
+  &__tab {
+    width: 200px !important;
+    height: 120px !important;
+    @media (max-width: 768px) {
+      width: 50% !important;
+      * {
+        font-size: 14px !important;
+      }
+    }
+  }
+}

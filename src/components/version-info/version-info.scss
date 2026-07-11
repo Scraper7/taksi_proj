@@ -1,0 +1,29 @@
+.version-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-top: 5px;
+
+  .info-item {
+    margin-left: 8px;
+
+    &._database {
+      flex-grow: 1;
+    }
+
+    &._name, &._build {
+      font-size: 16px;
+    }
+
+    &._name {
+      font-weight: bolder;
+    }
+
+    &._date {
+      font-size: 12px;
+    }
+  }
+}

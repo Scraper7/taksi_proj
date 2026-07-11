@@ -1,0 +1,39 @@
+.bigTruckServices {
+  &__body {
+    margin: 24px 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    gap: 9px 6px;
+  }
+
+  &__cell {
+    flex: 1 1;
+    width: fit-content;
+    box-sizing: content-box;
+    white-space: nowrap;
+    border-radius: 6px;
+    padding: 10px;
+    border: none;
+    background: #EEEEEE;
+    color: black;
+    font-size: 17px;
+    font-weight: 400;
+
+    &--selected, &--current {
+      color: white;
+    }
+
+    &--current {
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+      transform: scale(1.03);
+    }
+  }
+
+  &__description {
+    font-size: 20px;
+    line-height: 23px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 24px;
+  }
+}

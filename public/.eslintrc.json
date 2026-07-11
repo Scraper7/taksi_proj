@@ -1,0 +1,49 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "react-app"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": [
+      "warn",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "semi": [
+      "warn",
+      "never"
+    ],
+    "no-unused-vars": "off",
+    "default-case": "off",
+    "react/jsx-closing-bracket-location": "warn",
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-first-prop-new-line": "warn",
+    "react/jsx-indent-props": ["warn", 2],
+    "react/jsx-max-props-per-line": ["warn", { "maximum": 1, "when": "multiline" }],
+    "object-curly-spacing": ["warn", "always"],
+    "max-len": ["warn", { "code": 120, "ignoreStrings": true }],
+    "multiline-ternary": ["warn", "always-multiline"],
+    "space-before-function-paren": ["warn", "never"],
+    "func-call-spacing": ["warn", "never"],
+    "no-trailing-spaces": "warn",
+    "comma-dangle": ["warn", "always-multiline"],
+    "operator-linebreak": ["warn", "after"]
+  }
+}

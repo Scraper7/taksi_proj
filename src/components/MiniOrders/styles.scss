@@ -1,0 +1,683 @@
+@import '../../tools/mixins';
+
+.mini-orders {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 8px;
+  width: calc(100vw - 16px);
+  max-width: calc(100vw - 16px);
+  box-sizing: border-box;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow-x: auto;
+  overflow-y: visible;
+  pointer-events: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    align-items: center;
+    column-gap: 9px;
+    min-height: 62px;
+    width: clamp(268px, 74vw, 320px);
+    min-width: clamp(268px, 74vw, 320px);
+    flex: 0 0 clamp(268px, 74vw, 320px);
+    scroll-snap-align: start;
+    box-sizing: border-box;
+    padding: 8px 86px 8px 10px;
+    border: 1px solid rgba(226, 232, 240, .9);
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, .08) !important;
+    cursor: pointer;
+    transform: none !important;
+    transition: border-color .16s ease, background-color .16s ease, opacity .16s ease !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      transform: none !important;
+      box-shadow: 0 3px 12px rgba(15, 23, 42, .08) !important;
+    }
+
+    &.disabled {
+      filter: none !important;
+      opacity: 1 !important;
+    }
+
+    &--started {
+      border-color: rgba(251, 133, 0, .32);
+      background: linear-gradient(180deg, #ffffff 0%, #fff8ef 100%);
+    }
+
+    .chat__toggler {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      margin: 0;
+      border-radius: 50%;
+      transform: translateY(-50%) !important;
+      box-shadow: none !important;
+      z-index: 3;
+    }
+  }
+
+  &__mode-icon {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 11px;
+    visibility: visible !important;
+    opacity: 1 !important;
+    grid-column: 1;
+    grid-row: 1;
+    overflow: hidden;
+    padding: 0;
+
+    svg {
+      display: block !important;
+      width: 22px;
+      height: 22px;
+    }
+
+    &--order {
+      background: #eafaf0;
+      color: #16a34a;
+      background-image: none !important;
+
+      &::before,
+      &::after {
+        display: none !important;
+        content: none !important;
+      }
+    }
+
+    &--voting {
+      background: transparent;
+      color: #7c3aed;
+    }
+
+    &--offer {
+      background: transparent;
+      color: #fb8500;
+    }
+  }
+
+  &__plain-car-icon {
+    display: block !important;
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  &__mode-icon-image {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  &__main {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: 6px;
+    padding: 0;
+  }
+
+  &__id {
+    flex: 0 0 auto;
+    color: #334155;
+    font-size: 11px;
+    line-height: 1;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  &__status {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    color: #1f2937;
+    font-size: 14px;
+    line-height: 1.1;
+    font-weight: 800;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__body {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: 6px;
+    overflow: hidden;
+  }
+
+  &__metric {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    max-width: 100%;
+    min-height: 20px;
+    box-sizing: border-box;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 0;
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    b {
+      color: #ffb703;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    svg,
+    img {
+      width: 14px;
+      height: 14px;
+      flex: 0 0 14px;
+      object-fit: contain;
+    }
+
+    &--primary {
+      flex: 0 1 auto;
+    }
+
+    &--primary-order,
+    &--rating {
+      background: #e9fbef;
+      color: #16a34a;
+    }
+
+    &--primary-voting {
+      background: #f3edff;
+      color: #7c3aed;
+    }
+
+    &--primary-offer {
+      background: #fff4e5;
+      color: #fb8500;
+    }
+
+    &--time {
+      flex: 0 0 auto;
+      background: #fff4e5;
+      color: #fb8500;
+    }
+
+    &--time-voting {
+      background: #f3edff;
+      color: #7c3aed;
+    }
+
+    &--type {
+      flex: 0 1 auto;
+      background: #f8fafc;
+      color: #475569;
+    }
+  }
+
+
+
+  &__car-class {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    z-index: 2;
+
+    .car-class-badge__image {
+      width: 50px;
+      max-height: 28px;
+    }
+  }
+
+  &__finish {
+    grid-column: 1 / -1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 36px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ff9800 0%, #ff5a00 100%);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: none !important;
+    transform: none !important;
+    transition: opacity .16s ease, filter .16s ease !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      transform: none !important;
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: .62;
+    }
+  }
+
+  .button,
+  .button__wrapper {
+    display: none !important;
+  }
+}
+
+.passenger__mini-orders.mini-orders {
+  left: 8px;
+  right: 8px;
+  top: 8px;
+  width: calc(100vw - 16px);
+  max-width: calc(100vw - 16px);
+  padding: 0;
+  margin: 0;
+  justify-content: flex-start;
+  align-content: stretch;
+  overflow-x: auto;
+  overflow-y: visible;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 560px) {
+  .mini-orders {
+    width: calc(100vw - 16px);
+    max-width: calc(100vw - 16px);
+    gap: 7px;
+    padding: 0;
+    border-radius: 0;
+
+    &__card {
+      grid-template-columns: 38px minmax(0, 1fr);
+      min-height: 56px;
+      width: clamp(244px, 82vw, 288px);
+      min-width: clamp(244px, 82vw, 288px);
+      flex: 0 0 clamp(244px, 82vw, 288px);
+      column-gap: 8px;
+      padding: 8px 68px 8px 10px;
+      border-radius: 15px;
+    }
+
+    &__mode-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 10px;
+
+      svg,
+      .mini-orders__plain-car-icon {
+        width: 21px !important;
+        height: 21px !important;
+      }
+
+      .mini-orders__mode-icon-image {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    &__main {
+      gap: 4px;
+    }
+
+    &__header {
+      gap: 5px;
+    }
+
+    &__id {
+      font-size: 10px;
+    }
+
+    &__status {
+      font-size: 12px;
+    }
+
+    &__body {
+      gap: 4px;
+    }
+
+    &__metric {
+      min-height: 19px;
+      padding: 3px 6px;
+      font-size: 9px;
+
+      svg,
+      img {
+        width: 12px;
+        height: 12px;
+        flex-basis: 12px;
+      }
+    }
+
+
+    &__card .chat__toggler {
+      right: 6px;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+    }
+  }
+
+  .passenger__mini-orders.mini-orders {
+    left: 8px;
+    top: 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .mini-orders {
+    &__status {
+      font-size: 12px;
+    }
+
+    &__metric {
+      font-size: 9px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+}
+
+/* FINAL: keep PETIT/GRAND icon fully visible in top active-order card and keep rating text readable. */
+.mini-orders {
+  &__card {
+    padding-right: 78px;
+  }
+
+  &__car-class {
+    right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 44px;
+    overflow: visible;
+
+    .car-class-badge__image {
+      display: block;
+      width: auto !important;
+      height: auto !important;
+      max-width: 62px !important;
+      max-height: 44px !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      object-fit: contain !important;
+    }
+  }
+
+  &__metric--primary {
+    max-width: 112px;
+  }
+
+  &__card--started {
+    grid-template-columns: 42px minmax(0, 1fr) 62px;
+    row-gap: 7px;
+    padding: 8px 10px;
+  }
+
+  &__card--started .mini-orders__main {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  &__card--started .mini-orders__car-class {
+    position: static;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    transform: none;
+  }
+
+  &__card--started .mini-orders__finish {
+    grid-column: 1 / -1;
+    min-height: 31px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  &__card--started .mini-orders__metric--primary {
+    max-width: 132px;
+  }
+}
+
+@media (max-width: 560px) {
+  .mini-orders {
+    &__card {
+      padding-right: 74px;
+    }
+
+    &__car-class {
+      right: 7px;
+      width: 60px;
+      height: 42px;
+
+      .car-class-badge__image {
+        max-width: 60px !important;
+        max-height: 42px !important;
+      }
+    }
+
+    &__metric--primary {
+      max-width: 98px;
+    }
+
+    &__card--started {
+      grid-template-columns: 38px minmax(0, 1fr) 60px;
+      padding: 8px 9px;
+    }
+
+    &__card--started .mini-orders__metric--primary {
+      max-width: 112px;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .mini-orders {
+    &__card {
+      padding-right: 70px;
+    }
+
+    &__car-class {
+      width: 56px;
+      height: 40px;
+
+      .car-class-badge__image {
+        max-width: 56px !important;
+        max-height: 40px !important;
+      }
+    }
+
+    &__metric--primary {
+      max-width: 90px;
+    }
+  }
+}
+
+
+
+
+/* 2026-06-10: a closed card with an already assigned driver must not look like
+   it controls the currently opened order. Keep the whole card clickable for
+   opening, but mute its live-only state and never show action buttons there. */
+.mini-orders__card--inactive-live {
+  border-color: rgba(226, 232, 240, .95) !important;
+  background: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, .06) !important;
+}
+
+.mini-orders__card--inactive-live .mini-orders__metric--time,
+.mini-orders__card--inactive-live .mini-orders__started-actions,
+.mini-orders__card--inactive-live .chat__toggler {
+  display: none !important;
+}
+
+/* Client/passenger top strip: selected order plaque gets the same orange outline and bottom indicator as driver cards. */
+.mini-orders__card--selected {
+  border-color: #F59E0B !important;
+  background: linear-gradient(180deg, #ffffff 0%, #fff8ef 100%) !important;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, .18) !important;
+}
+
+.mini-orders__card--selected::after {
+  content: '';
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 999px 999px 0 0;
+  background: #F59E0B;
+  pointer-events: none;
+}
+
+/* RESTORE CLIENT TOP CARD ACTIONS 2026-06-01
+   Support the restored finish + SOS row without changing old card proportions. */
+.mini-orders__started-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  min-width: 0;
+}
+
+.mini-orders__sos {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  min-width: 62px;
+  min-height: 36px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff1f2;
+  color: #e11d48;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.mini-orders__sos svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+}
+
+.mini-orders__card--started .mini-orders__finish {
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
+}
+
+.mini-orders__card--started .mini-orders__finish,
+.mini-orders__card--started .mini-orders__sos {
+  min-height: 31px;
+  font-size: 12px;
+}
+
+@media (max-width: 560px) {
+  .mini-orders__card--started .mini-orders__sos {
+    min-width: 54px;
+    padding: 0 8px;
+  }
+}
+
+/* 2026-06-01: active client top plaque should not keep an empty right column.
+   Keep the old visual, but let Finish/SOS use the full card width on 360x740. */
+.mini-orders__card--started {
+  grid-template-columns: 38px minmax(0, 1fr) !important;
+  padding-right: 9px !important;
+}
+
+.mini-orders__card--started .mini-orders__main {
+  grid-column: 2 !important;
+  padding-right: 58px;
+}
+
+.mini-orders__card--started .mini-orders__car-class {
+  position: absolute !important;
+  top: 19px !important;
+  right: 10px !important;
+  width: 48px !important;
+  height: 32px !important;
+  transform: translateY(-50%) !important;
+}
+
+.mini-orders__card--started .mini-orders__car-class .car-class-badge__image {
+  max-width: 48px !important;
+  max-height: 32px !important;
+}
+
+.mini-orders__card--started .mini-orders__started-actions {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+}
+
+@media (max-width: 380px) and (max-height: 780px) {
+  .mini-orders__card--started {
+    padding: 7px 8px !important;
+  }
+
+  .mini-orders__card--started .mini-orders__main {
+    padding-right: 52px;
+  }
+
+  .mini-orders__card--started .mini-orders__car-class {
+    right: 8px !important;
+    width: 44px !important;
+    height: 30px !important;
+  }
+
+  .mini-orders__card--started .mini-orders__finish,
+  .mini-orders__card--started .mini-orders__sos {
+    min-height: 30px !important;
+  }
+}

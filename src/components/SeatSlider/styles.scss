@@ -1,0 +1,67 @@
+@use '../Theme';
+
+$itemWidth: 28px;
+$itemWidthPlusGap: 36px;
+
+.seat-slider {
+  width: calc($itemWidthPlusGap * var(--seat-slider--per-view, 3) - 8px);
+
+  &--disabled {
+    pointer-events: none;
+  }
+
+  &__button {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $itemWidth;
+    height: 100%;
+    border: none;
+    background-color: white;
+
+    &--left {
+      left: 0;
+      transform: rotate(180deg);
+    }
+
+    &--right {
+      right: 0;
+    }
+  }
+
+  &__arrow-icon {
+    opacity: .25;
+  }
+
+  &__slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $itemWidth;
+    height: $itemWidth;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    font-size: 10px;
+    color: rgb(0, 0, 0, 0.5);
+    transition-property: color, border-color;
+    transition-duration: .2s;
+
+    &__active {
+      border-color: color-mix(in srgb, var(#{Theme.$accent}), transparent 20%);
+      font-weight: 700;
+      color: var(#{Theme.$accent})
+    }
+  }
+
+  &--disabled &__slide {
+    color: #00000033;
+
+    &__active {
+      border-color: transparent;
+      color: rgb(0, 0, 0, 0.5);
+    }
+  }
+
+}

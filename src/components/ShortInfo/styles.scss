@@ -1,0 +1,65 @@
+@use '../Theme';
+
+.short-info {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  overflow-x: auto;
+  height: 16px;
+
+  &__item {
+    flex: none;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  &__line {
+    width: 1px;
+    height: 12px;
+    border-radius: 0.5px;
+    background-color: #E7E7E7;
+  }
+
+  &__icon {
+    width: 16px;
+    stroke: var(#{Theme.$foreground});
+  }
+
+  &__item--active &__icon {
+    stroke: var(#{Theme.$accent});
+  }
+
+
+  &--clickable {
+    cursor: pointer;
+  }
+
+  &__item--activity {
+    margin-left: auto;
+  }
+
+  &__activity-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 18px;
+    padding: 0 5px;
+    border: 2px solid #20d66b;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #16a34a;
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 800;
+    box-shadow: none;
+  }
+
+  &__text {
+    font-size: 10px;
+    font-weight: 500;
+  }
+}

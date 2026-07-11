@@ -1,0 +1,1705 @@
+@import "../../tools/mixins";
+
+$low-profit-bg: #C19276;
+$low-profit-fg: #3E0C0C;
+$medium-profit-bg: #FFFB8E;
+$medium-profit-fg: #A37211;
+$high-profit-bg: #A1FF97;
+$high-profit-fg: #22A613;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.18);
+  border-radius: 13px;
+  cursor: pointer;
+  padding-bottom: 20px;
+  background: #FFFFFF;
+  filter: grayscale(100%);
+
+  span {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+  }
+
+  hr {
+    width: 68%;
+    box-shadow: 1px 0px 0px #FFFFFF;
+  }
+
+  &__price {
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  img {
+    filter: grayscale(100%)
+  }
+
+  &--active {
+    img {
+      filter: none
+    }
+  }
+}
+
+.status-card {
+  $b: &;
+
+  cursor: pointer;
+  // min-height: 172px;
+  background: #FFFFFF;
+  border: 2px solid #AE0000;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.22);
+  border-radius: 13px;
+  padding: 10px;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  &--profit {
+    &--low {
+      background: $low-profit-bg;
+      #{$b}__profit {
+        color: $low-profit-fg;
+      }
+    }
+    &--medium {
+      background: $medium-profit-bg;
+      #{$b}__profit {
+        color: $medium-profit-fg;
+      }
+    }
+    &--high {
+      background: $high-profit-bg;
+      #{$b}__profit {
+        color: $high-profit-fg;
+      }
+    }
+  }
+
+  // &--history {
+  //   filter: grayscale(100%);
+  // }
+
+  @include phone {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+
+    .order-chat {
+      justify-content: center !important;
+      padding-bottom: 10px;
+    }
+
+    &__money {
+      justify-content: center !important;
+      border-bottom: 1px solid rgba(79, 0, 0, 0.22);
+      padding: 10px 0;
+    }
+  }
+
+  &__money {
+    border-bottom: 1px solid #F5F5F5;
+    padding: 8px 0;
+
+    #{$b}__cost {
+      width: max-content;
+      color: #000000;
+      font-size: 18px;
+      font-weight: 500;
+
+      small {
+        margin-left: 6px;
+        color: #FF2400;
+        font-size: 10px;
+        font-weight: 500;
+      }
+    }
+
+    #{$b}__profit {
+      width: max-content;
+      font-size: 18px;
+    }
+
+    &#{$b}__separator {
+      &.separate {
+        #{$b}__cost {
+          display: flex;
+          align-items: center;
+          gap: 2px;
+
+          @include phone {
+            display: none;
+          }
+        }
+      }
+
+      #{$b}__profit {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  // > span {
+  //   font-weight: 500;
+  //   font-size: 15px;
+  //   line-height: 18px;
+  //   color: #6F1717;
+  // }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__number {
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  &__points {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 8px;
+  }
+
+  &__from {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include phone {
+      flex-direction: column;
+
+      &-address {
+        order: 2;
+        align-self: baseline;
+      }
+    }
+
+    &-address {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 4px;
+
+      & > span {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        
+        color: #000000;
+        font-size: inherit;
+        font-weight: inherit;
+
+        img {
+          height: 20px;
+          margin-left: 16px;
+        }
+      }
+    }
+
+    span {
+      color: rgba(0, 0, 0, 0.25);
+      font-size: 10px;
+      font-weight: 500;
+
+      span {
+        color: #000000;
+        font-size: inherit;
+        font-weight: inherit;
+      }
+    }
+  }
+
+  &__time {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+
+    label {
+      font-size: 10px;
+      font-weight: 500;
+      color: #000000;
+    }
+    svg {
+      path {
+        stroke: #FF2400;
+      }
+    }
+  }
+
+  &__to {
+    span {
+      font-weight: 300;
+      font-size: 19px;
+      line-height: 23px;
+      margin-left: 5px;
+    }
+  }
+
+  &__separator {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+
+    @include phone {
+      justify-content: center;
+    }
+  }
+  // &__separator {
+  //   margin-bottom: 5px;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: flex-end;
+
+  //   &.separate {
+  //     span:nth-child(1) {
+  //       border-bottom: 1px solid rgba(79, 0, 0, 0.22);
+  //       width: 55%;
+
+  //       @include phone {
+  //         display: none;
+  //       }
+  //     }
+  //   }
+
+  //   span:nth-child(2) {
+  //     display: flex;
+  //     align-items: center;
+  //     font-weight: 500;
+  //     font-size: 29px;
+  //     line-height: 34px;
+  //     text-align: right;
+
+  //     img {
+  //       margin-left: 10px;
+  //     }
+
+  //     @include phone {
+  //       align-self: center;
+  //     }
+  //   }
+  // }
+
+  &__comments {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    img {
+      width: 16px;
+
+      &:not(:first-child) {
+        margin-left: 4px;
+      }
+    }
+
+    p {
+      max-width: 70%;
+      display: flex;
+      align-items: center;
+      
+      color: #000000;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    span:nth-child(1) {
+      font-weight: normal;
+      font-size: 10px;
+
+      img {
+        margin-right: 10px;
+        width: 20px;
+      }
+    }
+
+    .user-id {
+      margin-left: 10px;
+      font-size: 18px;
+    }
+  }
+
+  &__seats {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    label {
+      font-weight: 500;
+      font-size: 10px;
+      color: #000000;
+    }
+
+    img {
+      margin-left: 5px;
+      width: 22px;
+    }
+  }
+
+  &__other-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-style: italic;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: right;
+      color: #838383;
+
+      img {
+        height: 18px;
+        width: 18px;
+        margin: 0 8px
+      }
+    }
+
+    > img {
+      height: 17px;
+    }
+  }
+
+  &__modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all .3s ease;
+    padding: 16px;
+
+    &[data-active='true'] {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+
+    &--profit {
+      &--low {
+        #{$b}__profit {
+          color: $low-profit-fg;
+        }
+      }
+      &--medium {
+        #{$b}__profit {
+          color: $medium-profit-fg;
+        }
+      }
+      &--high {
+        #{$b}__profit {
+          color: $high-profit-fg;
+        }
+      }
+    }
+
+    & > div {
+      overflow-y: auto;
+      max-width: 900px;
+      width: 100%;
+      max-height: 100%;
+      background-color: #FFFFFF;
+      border-radius: 32px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      & > div {
+        position: relative;
+        padding-bottom: 16px;
+
+        &:not(:last-child)::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 1px;
+          background-color: #F1F1F1;
+          bottom: 0;
+        }
+      }
+
+      .top {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: 1fr 1fr;
+        gap: 8px;
+
+        .avatar {
+          grid-row: 1/3;
+          width: 48px;
+          height: 48px;
+        }
+
+        .name {
+          display: flex;
+          gap: 16px;
+
+          p:nth-of-type(2) {
+            font-size: 12px;
+          }
+        }
+
+        p {
+          align-self: end;
+          padding: 0;
+          margin: 0;
+          line-height: 1.5ch;
+          font-size: 15px;
+          font-weight: 500;
+
+          span {
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+          }
+        }
+        
+        .stars {
+          align-self: start;
+          display: flex;
+          align-items: center;
+
+          span {
+            opacity: .5;
+            color: #000000;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+          }
+        }
+
+        b {
+          grid-row: 1/3;
+          grid-column: 3/4;
+          font-size: 11px;
+          font-weight: 500;
+          // opacity: .25;
+          color: #B9B9B9;
+        }
+      }
+
+      .address {
+        img {
+          height: 20px;
+          margin-left: 16px;
+        }
+        b {
+          opacity: .5;
+          font-size: 13px;
+          font-weight: 500;
+        }
+        p {
+          font-size: 15px;
+          font-weight: 500;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          
+          & > span {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            // align-items: center;
+            column-gap: 4px;
+            row-gap: 8px;
+            color: rgba(0, 0, 0, 0.25);
+            font-size: 15px;
+            font-weight: 500;
+
+            span {
+              color: #000000;
+              font-size: inherit;
+              font-weight: inherit;
+              display: flex;
+              align-items: center;
+
+              &.svg {
+                grid-column: 4/5;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                padding-left: 16px;
+              }
+            }
+          }
+        }
+        .address__content {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          margin-top: 4px;
+        }
+
+        .address__title {
+          color: #000000;
+          font-size: 15px;
+          font-weight: 500;
+        }
+
+        .address__row {
+          display: grid;
+          grid-template-columns: auto 1fr auto auto;
+          align-items: center;
+          column-gap: 4px;
+          row-gap: 6px;
+          color: rgba(0, 0, 0, 0.25);
+          font-size: 15px;
+          font-weight: 500;
+        }
+
+        .address__label {
+          color: rgba(0, 0, 0, 0.25);
+          font-size: inherit;
+          font-weight: inherit;
+        }
+
+        .address__value {
+          min-width: 0;
+          color: #000000;
+          font-size: inherit;
+          font-weight: inherit;
+          line-height: 1.25;
+          overflow-wrap: anywhere;
+          display: flex;
+          align-items: center;
+        }
+
+        .address__toggle {
+          height: 20px;
+          margin-left: 16px;
+          cursor: pointer;
+          align-self: center;
+        }
+
+        .address__row .svg {
+          grid-column: 4/5;
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+          padding-left: 16px;
+          cursor: pointer;
+        }
+
+        img {
+          align-self: center;
+        }
+      }
+
+      .time, .payment {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        p {
+          font-size: 12px;
+          font-weight: 500;
+
+          span {
+            font-size: inherit;
+            font-weight: 400;
+          }
+        }
+      }
+      .payment {
+        p {
+          span {
+            span {
+              color: #FF2400;
+            }
+          }
+        }
+      }
+
+      .client {
+        display: grid;
+        grid-template-columns: 1fr auto;
+
+        .voting-participation {
+          grid-column: 1/3;
+          display: grid;
+          gap: 6px;
+          margin-bottom: 12px;
+          padding: 12px 14px;
+          border: 1px solid #FFE0B8;
+          border-radius: 14px;
+          background: #FFF9F0;
+          color: #1F2937;
+          font-size: 13px;
+          font-weight: 500;
+
+          &__status {
+            color: #B45309;
+            font-weight: 700;
+          }
+
+          &__nearest {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+
+            ul {
+              display: flex;
+              gap: 6px;
+              flex-wrap: wrap;
+              margin: 0;
+              padding: 0;
+              list-style: none;
+            }
+
+            li {
+              display: flex;
+              align-items: center;
+              gap: 6px;
+              min-width: 0;
+              padding: 3px 8px;
+              border-radius: 999px;
+              background: #FFFFFF;
+              border: 1px solid #FFE0B8;
+              font-weight: 700;
+
+              span {
+                max-width: 120px;
+                overflow: hidden;
+                color: #4B5563;
+                font-weight: 600;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+              }
+
+              b {
+                color: #92400E;
+                font-weight: 800;
+                white-space: nowrap;
+              }
+            }
+          }
+        }
+
+        .comments {
+          display: flex;
+          gap: 4px;
+          cursor: pointer;
+
+          &[data-active='true'] {
+            flex-direction: column;
+
+            p span {
+              display: block;
+            }
+          }
+
+          p {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            line-height: 1.5ch;
+            padding: 0;
+            margin: 0;
+
+            img {
+              width: 16px;
+
+              &:not(:first-child) {
+                margin-left: 4px;
+              }
+            }
+
+            span {
+              display: none;
+              font-size: 10px;
+            }
+          }
+        }
+
+        form {
+          grid-column: 1/3;
+        }
+
+        .btns {
+          margin-top: 16px;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+
+          .button__wrapper {
+            flex: auto;
+            width: auto;
+            padding: 0;
+            margin: 0;
+
+            &:only-child {
+              grid-column: 1/3;
+            }
+
+            button {
+              margin: 0
+            }
+          }
+
+          .input__field-wrapper {
+            flex: none;
+            width: 100%;
+          }
+
+          button {
+            height: auto;
+            background: #FF2400!important;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border: none;
+            color: #FFFFFF;
+            font-size: 13px;
+            font-weight: 500;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+
+.order-history {
+  margin-bottom: 20px;
+
+  * {
+    color: #989898 !important;
+  }
+
+  .status-card-separator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.status-card__modal {
+  .driver-offer-info,
+  .driver-offer-sent-card {
+    display: grid;
+    gap: 8px;
+    margin: 12px 0;
+    padding: 12px 14px;
+    border: 1px solid #D7E7FF;
+    border-radius: 14px;
+    background: #F7FBFF;
+    color: #1F2937;
+    font-size: 13px;
+  }
+
+  .driver-offer-info__title,
+  .driver-offer-form-title,
+  .driver-offer-sent-card b {
+    color: #0D47A1;
+    font-weight: 800;
+  }
+
+  .driver-offer-info__row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+
+    span {
+      color: #64748B;
+      font-weight: 600;
+    }
+
+    b {
+      text-align: right;
+      font-weight: 800;
+    }
+  }
+
+  .driver-offer-info__comment {
+    display: grid;
+    gap: 4px;
+
+    span {
+      color: #64748B;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.35;
+    }
+  }
+
+  .driver-offer-info__count,
+  .driver-offer-info__hint {
+    padding-top: 4px;
+    color: #475569;
+    font-weight: 600;
+  }
+
+  .driver-offer-sent-card {
+    flex: 1 0 100%;
+
+    span {
+      display: block;
+      line-height: 1.35;
+    }
+  }
+
+  .driver-offer-form-title {
+    flex: 1 0 100%;
+    margin-top: 4px;
+  }
+}
+
+.status-card__offer-summary {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0;
+  padding: 8px 10px;
+  border: 1px solid rgba(13, 71, 161, 0.18);
+  border-radius: 12px;
+  background: rgba(13, 71, 161, 0.06);
+  color: #1F2937;
+  font-size: 11px;
+  line-height: 1.3;
+
+  span {
+    text-align: left;
+    font-size: 11px;
+  }
+
+  b {
+    font-weight: 800;
+  }
+}
+
+.status-card__offer-badge {
+  width: max-content;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #0D47A1;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* Compact OFFER UI in cards/modals. */
+.status-card__modal .driver-offer-info,
+.status-card__modal .driver-offer-sent-card {
+  gap: 6px !important;
+  margin: 8px 0 10px !important;
+  padding: 9px 10px !important;
+  border-color: #e5e7eb !important;
+  border-radius: 12px !important;
+  background: #f8fafc !important;
+  color: #001f43 !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+}
+
+.status-card__modal .driver-offer-info__title,
+.status-card__modal .driver-offer-form-title,
+.status-card__modal .driver-offer-sent-card b {
+  color: #0f2c76 !important;
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+}
+
+.status-card__modal .driver-offer-info__row span,
+.status-card__modal .driver-offer-info__comment span,
+.status-card__modal .driver-offer-info__count,
+.status-card__modal .driver-offer-info__hint,
+.status-card__modal .driver-offer-sent-card span {
+  color: #5c6d82 !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  font-weight: 400 !important;
+}
+
+.status-card__modal .driver-offer-info__row b,
+.status-card__modal .driver-offer-info__comment p {
+  color: #001f43 !important;
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  font-weight: 500 !important;
+}
+
+
+/* Offer modal select: site-sized dropdown instead of huge system buttons. */
+.status-card__modal .order__driver-offer-field {
+  flex: 1 0 100%;
+  --input-height: 36px;
+}
+
+.status-card__modal .order__driver-offer-field .input__header {
+  margin-bottom: 5px;
+}
+
+.status-card__modal .order__driver-offer-field .input__label,
+.status-card__modal .order__driver-offer-choice-label {
+  color: #001f43 !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+  font-weight: 400 !important;
+}
+
+.status-card__modal .order__driver-offer-field .input,
+.status-card__modal .order__driver-offer-field textarea.input {
+  height: 36px;
+  min-height: 36px;
+  padding-left: 11px;
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+.status-card__modal .order__driver-offer-field textarea.input {
+  height: auto;
+  min-height: 54px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.status-card__modal .order__driver-offer-field .input__wrapper {
+  border-radius: 14px;
+  background-color: #E7E7E7;
+}
+
+.status-card__modal .order__driver-offer-choice {
+  flex: 1 0 100%;
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  align-items: start;
+  gap: 6px 9px;
+  margin: 2px 0 5px;
+}
+
+.status-card__modal .order__driver-offer-select-wrap {
+  position: relative;
+  min-width: 0;
+}
+
+.status-card__modal .order__driver-offer-select {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  width: 100% !important;
+  min-height: 34px !important;
+  height: 34px !important;
+  padding: 0 11px !important;
+  border: 0 !important;
+  border-radius: 14px !important;
+  background: #E7E7E7 !important;
+  color: #001f43 !important;
+  font-family: inherit !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  font-weight: 400 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.status-card__modal .order__driver-offer-select span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status-card__modal .order__driver-offer-select i {
+  flex: none;
+  color: #6b7280;
+  font-style: normal;
+  font-size: 13px;
+}
+
+.status-card__modal .order__driver-offer-select-list {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 170px;
+  overflow-y: auto;
+  padding: 5px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, .12);
+}
+
+.status-card__modal .order__driver-offer-select-option {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  min-height: 30px !important;
+  height: auto !important;
+  padding: 0 9px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  color: #001f43 !important;
+  font-family: inherit !important;
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  font-weight: 400 !important;
+  text-align: left !important;
+  box-shadow: none !important;
+}
+
+.status-card__modal .order__driver-offer-select-option--active,
+.status-card__modal .order__driver-offer-select-option:hover {
+  background: #dfe2e6 !important;
+  color: #001f43 !important;
+}
+
+.status-card__modal .order_take-order-btn,
+.status-card__modal .order_hide-order-btn {
+  min-height: 36px !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 560px) {
+  .status-card__modal .order__driver-offer-choice {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .status-card__modal .order__driver-offer-select {
+    min-height: 32px !important;
+    height: 32px !important;
+    font-size: 11px !important;
+  }
+
+  .status-card__modal .order__driver-offer-select-list {
+    max-height: 150px;
+  }
+
+  .status-card__modal .order__driver-offer-select-option {
+    min-height: 28px !important;
+    font-size: 10px !important;
+  }
+}
+
+
+/* Driver offer ETA quick picker and comment save star inside card modal */
+.status-card__modal .order__driver-offer-eta-control {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.status-card__modal .order__driver-offer-eta-quick {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+}
+
+.status-card__modal .order__driver-offer-eta-chip {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  background: #E7E7E7;
+  color: #001f43;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: background-color .14s ease, color .14s ease, border-color .14s ease, box-shadow .14s ease !important;
+}
+
+.status-card__modal .order__driver-offer-eta-chip--active {
+  background: #FF2400;
+  color: #ffffff;
+  border-color: rgba(255, 36, 0, .35);
+  box-shadow: 0 0 0 3px rgba(255, 36, 0, .12) !important;
+  font-weight: 800;
+}
+
+.status-card__modal .order__driver-offer-eta-chip--active::after {
+  content: '✓';
+  display: inline-block;
+  margin-left: 4px;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.status-card__modal .order__driver-offer-select-wrap--compact {
+  flex: 1 1 auto;
+  min-width: 96px;
+}
+
+.status-card__modal .order__driver-offer-select--active {
+  background: #FF2400 !important;
+  color: #ffffff !important;
+}
+
+.status-card__modal .order__driver-offer-select--active i {
+  color: #ffffff !important;
+}
+
+.status-card__modal .order__driver-offer-comment-wrap {
+  position: relative;
+  flex: 1 0 100%;
+}
+
+.status-card__modal .order__driver-offer-comment-wrap .order__driver-offer-field textarea.input {
+  padding-right: 42px;
+}
+
+.status-card__modal .order__driver-offer-comment-save {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(156, 163, 175, .18);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .92);
+  color: #9ca3af;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, .08) !important;
+  transform: none !important;
+  transition: background-color .14s ease, color .14s ease, border-color .14s ease, box-shadow .14s ease !important;
+}
+
+.status-card__modal .order__driver-offer-comment-save--active {
+  color: #ffffff;
+  background: #FF2400;
+  border-color: rgba(255, 36, 0, .35);
+  box-shadow: 0 0 0 3px rgba(255, 36, 0, .12), 0 2px 8px rgba(15, 23, 42, .08) !important;
+}
+
+@media (max-width: 560px) {
+  .status-card__modal .order__driver-offer-eta-control {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .status-card__modal .order__driver-offer-eta-chip {
+    min-width: 31px;
+    height: 31px;
+    border-radius: 12px;
+    font-size: 11px;
+  }
+
+  .status-card__modal .order__driver-offer-select-wrap--compact {
+    min-width: 112px;
+  }
+}
+
+/* Selected order plaque: orange outline + small bottom indicator. */
+.status-card--selected {
+  position: relative;
+  border: 1px solid #F59E0B !important;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.18) !important;
+}
+
+.status-card--selected::after {
+  content: '';
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 999px 999px 0 0;
+  background: #F59E0B;
+}
+
+/* Negative profit: show the calculated minus value, but make the order visually secondary. */
+.status-card--profit-negative {
+  opacity: .64;
+  filter: saturate(.72);
+  background: #f2efed !important;
+  border-color: rgba(139, 16, 16, .18) !important;
+}
+
+.status-card--profit-negative .status-card__profit {
+  color: #8B1010 !important;
+  font-weight: 700;
+}
+
+.order__hide-confirm,
+.status-card__hide-confirm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.order__hide-confirm-title,
+.status-card__hide-confirm-title {
+  grid-column: 1 / -1;
+  color: #4A4A4A;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.order__hide-confirm .order_take-order-btn,
+.order__hide-confirm .order_hide-order-btn,
+.status-card__hide-confirm .order_take-order-btn,
+.status-card__hide-confirm .order_hide-order-btn {
+  margin: 0 !important;
+}
+
+/* Detailed driver cards: keep low-profit cards muted without making text unreadable. */
+.status-card--profit--low,
+.status-card--profit--medium,
+.status-card--profit--high {
+  color: #24313c;
+}
+
+.status-card--profit--low .status-card__from span,
+.status-card--profit--low .status-card__from-address > span,
+.status-card--profit--low .status-card__cost,
+.status-card--profit--medium .status-card__from span,
+.status-card--profit--medium .status-card__from-address > span,
+.status-card--profit--medium .status-card__cost,
+.status-card--profit--high .status-card__from span,
+.status-card--profit--high .status-card__from-address > span,
+.status-card--profit--high .status-card__cost {
+  color: #24313c !important;
+}
+
+.status-card--profit-negative {
+  opacity: 1 !important;
+  filter: saturate(.78) brightness(.98) !important;
+}
+
+
+/* FINAL POLISH: readable driver cards, compact modal buttons, and offer blocks in the site style. */
+.status-card {
+  color: #24313c !important;
+  font-size: 11px;
+  line-height: 1.28;
+}
+
+.status-card--profit--low {
+  background: linear-gradient(180deg, #d6b198 0%, #cfa58b 100%) !important;
+}
+
+.status-card--profit--medium {
+  background: linear-gradient(180deg, #fff2a8 0%, #f6e58d 100%) !important;
+}
+
+.status-card--profit--high {
+  background: linear-gradient(180deg, #d3f3ce 0%, #bfeabc 100%) !important;
+}
+
+.status-card__number {
+  color: #9A3412 !important;
+  font-size: 10px !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+}
+
+.status-card__time label,
+.status-card__from span,
+.status-card__from-address,
+.status-card__from-address > span,
+.status-card__from-address span,
+.status-card__comments p,
+.status-card__seats label {
+  font-size: 10px !important;
+  line-height: 1.28 !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+}
+
+.status-card__from span,
+.status-card__from-address {
+  color: #5d6670 !important;
+}
+
+.status-card__from-address > span,
+.status-card__from-address span span {
+  color: #23313d !important;
+}
+
+.status-card__cost,
+.status-card__cost *,
+.status-card__profit {
+  color: #17212b !important;
+  font-size: 17px !important;
+  line-height: 1.18 !important;
+  font-weight: 500 !important;
+}
+
+.status-card__profit {
+  font-weight: 600 !important;
+}
+
+.status-card__cost small {
+  color: #7c3f13 !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+}
+
+.status-card__offer-summary {
+  gap: 5px !important;
+  margin: 8px 0 !important;
+  padding: 9px 10px !important;
+  border: 1px solid rgba(255, 255, 255, .42) !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, .32) !important;
+  color: #24313c !important;
+  font-size: 10px !important;
+  line-height: 1.25 !important;
+}
+
+.status-card__offer-summary span,
+.status-card__offer-summary b {
+  color: #24313c !important;
+  font-size: 10px !important;
+  line-height: 1.25 !important;
+  font-weight: 500 !important;
+  text-align: left !important;
+}
+
+.status-card__offer-summary b {
+  font-weight: 700 !important;
+}
+
+.status-card__offer-badge {
+  width: max-content !important;
+  padding: 3px 8px !important;
+  border: 1px solid rgba(234, 88, 12, .16) !important;
+  border-radius: 999px !important;
+  background: #fff4e6 !important;
+  color: #c2410c !important;
+  font-size: 10px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+}
+
+.status-card__modal {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.status-card__modal > div {
+  max-height: min(94dvh, 780px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.status-card__modal .client .btns {
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.status-card__modal .client .btns .order_action-button-wrapper {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.status-card__modal .client .btns .order_action-button-wrapper:only-child {
+  grid-column: auto !important;
+}
+
+.status-card__modal .client .btns .button.order_take-order-btn,
+.status-card__modal .client .btns .button.order_hide-order-btn {
+  width: auto !important;
+  min-width: 70px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  padding: 0 15px !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  line-height: 1 !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.status-card__modal .client .btns .button.order_take-order-btn[type='submit'] {
+  min-width: 118px !important;
+}
+
+.status-card__modal .status-card__hide-confirm,
+.status-card__modal .order__hide-confirm {
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.status-card__modal .driver-offer-info,
+.status-card__modal .driver-offer-sent-card {
+  border-color: rgba(255, 153, 0, .18) !important;
+  background: #fff8ef !important;
+}
+
+.status-card__modal .driver-offer-info__title,
+.status-card__modal .driver-offer-form-title,
+.status-card__modal .driver-offer-sent-card b {
+  color: #9A3412 !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+.status-card__modal .driver-offer-info__row span,
+.status-card__modal .driver-offer-info__comment span,
+.status-card__modal .driver-offer-info__count,
+.status-card__modal .driver-offer-info__hint,
+.status-card__modal .driver-offer-sent-card span,
+.status-card__modal .driver-offer-info__row b,
+.status-card__modal .driver-offer-info__comment p {
+  font-size: 11px !important;
+  line-height: 1.25 !important;
+}
+
+.status-card--profit-negative .status-card__profit {
+  color: #8B1010 !important;
+  font-weight: 700 !important;
+}
+
+
+/* Final safe patch: keep status participation readable and show relative profit without changing the layout. */
+.status-card--archive-canceled,
+.status-card--participation-rejected {
+  filter: saturate(.74) brightness(.98) !important;
+}
+
+.status-card--participation-assigned,
+.status-card--participation-arrived,
+.status-card--participation-started {
+  border-color: rgba(34, 166, 19, .36) !important;
+}
+
+.status-card__profit {
+  display: inline-flex !important;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.status-card__profit-relative {
+  display: block;
+  color: #5f6974 !important;
+  font-size: 9px !important;
+  line-height: 1.05 !important;
+  font-weight: 700 !important;
+  white-space: nowrap;
+}
+
+.status-card--profit-negative .status-card__profit-relative {
+  color: #8B1010 !important;
+}
+
+/* FINAL_ALL_REQUESTS_CARD_READABILITY: make order/offer cards readable without changing the app style. */
+.status-card,
+.status-card * {
+  text-shadow: none !important;
+}
+
+.status-card__modal .client .btns {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.status-card__modal .client .btns .button__wrapper,
+.status-card__modal .client .btns .order_action-button-wrapper,
+.status-card__modal .status-card__hide-confirm .button__wrapper,
+.status-card__modal .order__hide-confirm .button__wrapper {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.status-card__modal .client .btns .button.order_take-order-btn,
+.status-card__modal .client .btns .button.order_hide-order-btn,
+.status-card__modal .status-card__hide-confirm .button.order_take-order-btn,
+.status-card__modal .status-card__hide-confirm .button.order_hide-order-btn,
+.status-card__modal .order__hide-confirm .button.order_take-order-btn,
+.status-card__modal .order__hide-confirm .button.order_hide-order-btn {
+  flex: 0 1 auto !important;
+  width: max-content !important;
+  min-width: 88px !important;
+  max-width: min(242px, calc(100vw - 42px)) !important;
+  height: auto !important;
+  min-height: 34px !important;
+  padding: 7px 13px !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  line-height: 1.15 !important;
+  font-weight: 600 !important;
+  white-space: normal !important;
+  text-align: center !important;
+  overflow-wrap: anywhere !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.status-card__modal .client .btns .button.order_take-order-btn[type='submit'] {
+  min-width: 94px !important;
+}
+
+.status-card__number {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-height: 16px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .34);
+}
+
+.status-card--status-offer .status-card__number,
+.status-card--status-offer-candidate .status-card__number {
+  color: #b7410a !important;
+  background: rgba(255, 246, 235, .72);
+}
+
+.status-card__from-address {
+  gap: 3px 6px !important;
+}
+
+.status-card__from-address > span {
+  display: block !important;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.status-card--profit--low .status-card__from-address,
+.status-card--profit--low .status-card__from-address > span,
+.status-card--profit--low .status-card__time label,
+.status-card--profit--low .status-card__seats label,
+.status-card--profit--low .status-card__comments p {
+  color: #24313c !important;
+  opacity: 1 !important;
+}
+
+.driver-order-wide-mode-status-card.status-card {
+  border: 1px solid rgba(245, 158, 11, .18) !important;
+}
+
+.status-card__offer-summary {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+.status-card__offer-summary .status-card__offer-badge,
+.status-card__modal .driver-offer-info__title,
+.status-card__modal .driver-offer-form-title,
+.status-card__modal .driver-offer-sent-card b {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #fff4e6 !important;
+  color: #b7410a !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+  letter-spacing: .01em;
+}
+
+.status-card__modal .driver-offer-info,
+.status-card__modal .driver-offer-sent-card {
+  border: 1px solid rgba(245, 158, 11, .22) !important;
+  background: linear-gradient(180deg, #fff8ef 0%, #fff2e2 100%) !important;
+  box-shadow: none !important;
+}
+
+.status-card__modal .driver-offer-info__row,
+.status-card__modal .driver-offer-info__comment,
+.status-card__modal .driver-offer-info__count,
+.status-card__modal .driver-offer-info__hint {
+  color: #24313c !important;
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+  font-weight: 500 !important;
+}
+
+.status-card__modal .driver-offer-info__row span,
+.status-card__modal .driver-offer-info__comment span {
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+.status-card__modal .driver-offer-info__row b,
+.status-card__modal .driver-offer-info__comment p {
+  color: #1f2937 !important;
+  font-weight: 700 !important;
+  overflow-wrap: anywhere;
+}
+
+
+/* Driver modal address toggle: same behavior for FROM/TO and reliable tap target on mobile. */
+.status-card__modal .address__toggle {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  margin-left: 8px !important;
+  padding: 4px !important;
+  object-fit: contain;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.status-card__modal .address__row .svg {
+  min-width: 28px;
+}

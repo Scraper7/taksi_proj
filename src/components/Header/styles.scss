@@ -1,0 +1,568 @@
+$height: 80px;
+$red: #FF2400;
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  border-radius: 0 0 16px 16px;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  background: #FFFFFF;
+
+  .api {
+    margin-right: 15px;
+
+    @media (max-width: 768px) {
+      margin-right: 0;
+    }
+  }
+
+  h2,
+  .api {
+    font-weight: 500;
+    font-size: 24px;
+    color: #FFF8F8;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.33);
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #999999;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  .header-avatar-status {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+
+    &--driver {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      margin-top: -8px;
+      margin-bottom: -2px;
+    }
+  }
+
+  .header-driver-status {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    display: block;
+    padding: 0;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: none;
+    box-sizing: border-box;
+    overflow: visible;
+    z-index: 2;
+
+    &:disabled {
+      cursor: progress;
+      opacity: .72;
+    }
+
+    &__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+  }
+
+  .header-driver-status-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 20;
+    width: 232px;
+    padding: 8px;
+    background: #FFFFFF;
+    border: 1px solid rgba(17, 24, 39, .08);
+    border-radius: 14px;
+    box-shadow: 0 16px 40px rgba(17, 24, 39, .18);
+
+    &__profile {
+      padding: 8px 10px 9px;
+      border-radius: 12px;
+      background: #F8FAFC;
+      border: 1px solid rgba(17, 24, 39, .06);
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    &__profile-title {
+      color: #6B7280;
+      font-size: 11px;
+      line-height: 1.25;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    &__profile-main {
+      font-size: 13px;
+      line-height: 1.25;
+      font-weight: 700;
+      color: #111827;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &__profile-muted {
+      margin-top: 2px;
+      color: #6B7280;
+      font-size: 11px;
+      line-height: 1.25;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &__profile-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 6px;
+      color: #6B7280;
+      font-size: 11px;
+      line-height: 1.25;
+
+      b {
+        color: #374151;
+        font-size: 11px;
+        font-weight: 700;
+        text-align: right;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    &__actions {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    &__item {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      padding: 10px 12px;
+      text-align: left;
+      color: #111827;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        transform: none;
+        box-shadow: none;
+        background: #F3F4F6;
+      }
+
+      &--active {
+        background: #EAFBF0;
+        color: #128A2E;
+      }
+
+      &:disabled {
+        opacity: .45;
+        cursor: not-allowed;
+      }
+
+      &--logout {
+        margin-top: 6px;
+        color: #C92A2A;
+        background: #FFF5F5;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background: #FFE3E3;
+        }
+      }
+    }
+
+    &__hint {
+      display: block;
+      margin-top: 6px;
+      padding: 0 4px 4px;
+      color: #6B7280;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+  }
+
+  .column {
+    display: flex;
+    align-items: center;
+
+    .menu-icon {
+      background-color: red;
+      border-radius: 4px;
+    }
+  }
+
+  .menu {
+    $b: ".menu";
+
+    &__wrapper {
+      cursor: pointer;
+      padding: 5px;
+      position: relative;
+      height: $height;
+      display: flex;
+      align-items: center;
+    }
+
+    &__list {
+      list-style-type: none;
+      transition: .2s;
+      opacity: 0;
+      transform: scale(0);
+      transform-origin: top left;
+      max-height: 0;
+      margin: 0;
+      position: absolute;
+      top: $height;
+      left: 0;
+      background-color: #fff;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      border-top-right-radius: 15px;
+      padding: 0;
+      box-shadow: 0 0 5px darken(#fff, 50);
+      z-index: 1;
+
+      &--active {
+        opacity: 1;
+        transform: scale(1);
+        max-height: 500px;
+      }
+    }
+
+    &__item {
+      position: relative;
+
+      &:first-child {
+        #{$b}__button {
+          border-top-right-radius: 15px;
+        }
+      }
+
+      &:last-child {
+        #{$b}__button {
+          border-radius: 0 0 15px 15px
+        }
+      }
+    }
+
+    &__button {
+      background-color: transparent;
+      border: none;
+      padding: 10px 20px;
+      width: 250px;
+      transition: .2s;
+      text-align-last: left;
+      position: relative;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: darken(#fff, 5);
+      }
+    }
+
+    &__languages {
+      display: flex;
+      flex-direction: column;
+      padding: 5px 0;
+      background: #FFFFFF;
+      border: 1px solid #858585;
+      border-radius: 5px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-right: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    &__language-flag {
+      display: flex;
+      align-items: center;
+      padding: 3px 5px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    &__language-flag-icon {
+      width: 24px;
+      height: 16px;
+    }
+
+    &__language-flag-text {
+      margin-left: 5px;
+
+      &:only-child {
+        margin-left: 29px;
+      }
+    }
+  }
+}
+
+.vote-button {
+  border: none;
+  background-color: transparent;
+  height: 32px;
+  width: 32px;
+  border-radius: 8px;
+  background-color: $red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.burger-wrapper {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+  height: 32px;
+}
+
+.header-avatar-wrapper {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  height: 32px;
+}
+
+.header-user-name,
+.header-user-lng {
+  color: #BDBDBD;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.header-logo {
+  position: absolute;
+  left: calc(50% - 30px);
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+}
+
+.header-emulation-indicator {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  transform: none;
+  box-shadow: none;
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    object-fit: contain;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: transparent;
+    outline: none;
+    transform: none;
+    box-shadow: none;
+    opacity: .92;
+  }
+}
+
+.emulation-info {
+  position: fixed;
+  inset: 0;
+  z-index: 7000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, .34);
+  }
+
+  &__card {
+    position: relative;
+    width: min(370px, calc(100vw - 28px));
+    max-height: calc(100dvh - 36px);
+    overflow: auto;
+    padding: 18px 14px 14px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 20px 52px rgba(15, 23, 42, .22);
+    box-sizing: border-box;
+  }
+
+  &__icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    background: transparent;
+    color: #FF2400;
+
+    &-image {
+      width: 72px;
+      height: 72px;
+      display: block;
+      object-fit: contain;
+    }
+
+    svg {
+      width: 42px;
+      height: 42px;
+      fill: currentColor;
+      stroke: currentColor;
+    }
+  }
+
+  &__title {
+    color: #202532;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  &__text {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 14px;
+    background: #F7F7F8;
+    color: #4B5563;
+    font-size: 12.5px;
+    line-height: 1.42;
+    font-weight: 500;
+
+    p {
+      margin: 0 0 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__button {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 12px;
+    background: #FF2400;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: #E92200;
+      outline: none;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .emulation-info {
+    align-items: flex-end;
+    padding: 0;
+
+    &__card {
+      width: 100%;
+      max-height: 84dvh;
+      border-radius: 18px 18px 0 0;
+      padding-bottom: max(14px, env(safe-area-inset-bottom, 0) + 12px);
+    }
+  }
+}
+
+
+/* SIDE MENU BACKDROP CLOSE FIX 2026-06-03
+   Only closes the opened left menu when user taps empty place. */
+.header {
+  .menu {
+    &__wrapper {
+      z-index: 30;
+    }
+
+    &__backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 18;
+      display: block;
+      width: 100vw;
+      height: 100dvh;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: default;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    &__list {
+      z-index: 20;
+    }
+  }
+
+  .burger-button {
+    position: relative;
+    z-index: 21;
+  }
+}

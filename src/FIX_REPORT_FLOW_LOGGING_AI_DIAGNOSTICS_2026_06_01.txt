@@ -1,0 +1,51 @@
+FIX REPORT: FLOW LOGGING / AI DIAGNOSTICS
+Date: 2026-06-01
+
+What was added:
+1. Added a frontend flow logger: src/tools/flowLog.ts
+   - Saves business events to localStorage key taxi_flow_log_v1.
+   - Keeps the last 400 flow events.
+   - Adds screen and uiState to each event.
+   - Exposes window.__taxiFlow.get(), window.__taxiFlow.clear(), window.__taxiFlow.validateSuccessfulVotingTrip().
+   - Uses browser performance.mark('taxi.flow.EVENT') for timing markers.
+
+2. Existing debug-log copy now includes:
+   - entries: old technical frontend log;
+   - flow: business order flow;
+   - flowCheck: quick expected successful voting trip check.
+
+3. Instrumented passenger/voting flow:
+   - CREATE_ORDER
+   - ORDER_CREATED
+   - ORDER_SEARCH_STARTED
+   - ORDER_SEARCH_FINISHED
+   - ORDER_STATUS_CHANGED
+   - CANDIDATE_LIST_UPDATED
+   - CANDIDATE_ADDED
+   - CANDIDATE_REMOVED
+   - FIRST_DRIVER_DETECTED
+   - SELECT_DRIVER
+   - DRIVER_STATUS_CHANGED
+   - DRIVER_STARTED_MOVING_TO_CLIENT
+   - DRIVER_STOPPED_MOVING_TO_CLIENT
+   - DRIVER_ARRIVED
+   - TRIP_CODE_GENERATED
+   - TRIP_STARTED
+   - TRIP_FINISHED
+   - LEAVE_REVIEW
+   - ERROR_SHOWN_TO_CLIENT
+
+4. Instrumented map route diagnostics:
+   - ROUTE_MAIN_REQUESTED
+   - ROUTE_MAIN_READY
+   - ROUTE_DRIVER_REQUESTED
+   - ROUTE_DRIVER_READY
+
+Important:
+- UI styles, panels, buttons, order cards and layout were not redesigned.
+- Safe autoclean was not changed in this patch.
+- The emulator state is not cleared by this flow logger.
+- Flow logs are cleared only when the user copies the full debug log from the menu, same as the old technical log.
+
+Why:
+This makes route/order bugs easier to diagnose: AI will see not only technical map logs, but also the expected business path of the order and the actual screen state.

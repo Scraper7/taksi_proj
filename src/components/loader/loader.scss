@@ -1,0 +1,27 @@
+.loader_wrapper {
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+
+  span {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #000000;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+}
+
+@keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+} 

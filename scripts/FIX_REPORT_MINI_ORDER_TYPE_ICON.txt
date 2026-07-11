@@ -1,0 +1,18 @@
+Исправлена верхняя плашка активных заказов у пассажира.
+
+Что сделано:
+- В MiniOrders добавлен отдельный значок начального типа заказа.
+- Обычный заказ теперь показывается зелёной иконкой машины без лупы.
+- Голосование показывается фиолетовой иконкой группы/выбора.
+- Offer/Предложение показывается оранжевой иконкой тега/предложения.
+- Значок отражает именно тип заказа, а не текущий статус.
+- Текст статуса оставлен отдельно: Поиск водителя, Голосование, Предложение, В пути и т.д.
+- Изменения продублированы во всех копиях структуры src, src/src и src/src/src, чтобы typecheck не ловил старые файлы.
+
+Затронутые файлы:
+- src/components/MiniOrders/index.tsx
+- src/components/MiniOrders/styles.scss
+- src/src/components/MiniOrders/index.tsx
+- src/src/components/MiniOrders/styles.scss
+- src/src/src/components/MiniOrders/index.tsx
+- src/src/src/components/MiniOrders/styles.scss

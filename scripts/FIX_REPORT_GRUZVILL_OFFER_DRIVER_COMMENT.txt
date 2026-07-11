@@ -1,0 +1,31 @@
+Исправление комментария водителя в gruzvill/OFFER
+
+Что исправлено:
+1. При отправке предложения водителя комментарий теперь передается в backend внутри c_options вместе с ценой и ETA.
+2. Данные предложения сохраняются сразу в нескольких совместимых полях:
+   - driver_offer_comment
+   - comment
+   - driver_comment
+   - driver_offer.comment
+   - driver_offer.driver_comment
+   - offer.comment
+   - offer.driver_comment
+3. Пассажирская карточка кандидата теперь читает комментарий не только из одного поля, а из всех возможных мест ответа backend.
+4. Пустые строки пропускаются, поэтому если одно поле пришло пустым, интерфейс пробует следующее поле.
+5. Строка комментария в карточке кандидата больше не обрезается жестко одной строкой: длинный комментарий переносится и виден пользователю.
+
+Основные измененные файлы:
+- src/API/order.ts
+- src/tools/driverOffer.ts
+- src/pages/Passenger/VotingForm.tsx
+- src/pages/Passenger/voting-form.scss
+- src/components/PassengerLiveOrder/index.tsx
+- src/types/types.ts
+
+Такие же изменения внесены в дублированные копии внутри src/src и src/src/src, чтобы typecheck не подхватывал старую версию файлов.
+
+Проверка:
+- Установку зависимостей через npm ci выполнил успешно.
+- Синтаксическую проверку измененных TypeScript/TSX файлов через TypeScript transpileModule выполнил успешно.
+- SCSS-файл src/pages/Passenger/voting-form.scss отдельно парсится sass без ошибок.
+- Полная production-сборка запускалась, но в контейнере не завершилась за отведенное время; явных ошибок по измененным файлам в логе не было, только старые Sass deprecation warning.

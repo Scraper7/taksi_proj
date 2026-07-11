@@ -1,0 +1,31 @@
+$red: #FF2400;
+
+.burger-button {
+    border: none;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    width: 32px;
+    height: 32px;
+    padding: 8px 4.8px;
+    justify-content: space-between;
+}
+
+.burger-button__line {
+    height: 2px;
+    background-color: $red;
+    border-radius: 1px;
+    transition: width 0.3s ease-in-out;
+}
+
+.burger-button__line__s {
+    width: 30%;
+}
+
+.burger-button__line__m {
+    width: 70%;
+}
+
+.burger-button__line__l {
+    width: 100%;
+}

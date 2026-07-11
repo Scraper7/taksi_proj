@@ -1,0 +1,94 @@
+{
+  "apiBase": "https://ibronevik.ru/taxi/c/gruzvill/api/v1",
+  "test_user_id": "",
+  "pollIntervalMs": 3000,
+  "orderType": "all",
+  "dryRun": false,
+  "logRawOrders": false,
+  "retrySafeOnWrongCOptions": true,
+  "offerTransport": "c_options",
+  "defaultOffer": {
+    "minPrice": 100,
+    "maxPrice": 180,
+    "etaOptions": [
+      "Буду через 5 минут",
+      "Буду через 10 минут",
+      "Буду через 15 минут",
+      "Буду через 20 минут",
+      "Буду через 30 минут"
+    ],
+    "commentOptions": [
+      "Еду напрямую",
+      "Есть кондиционер",
+      "Большой багажник",
+      "Могу быстро подъехать"
+    ]
+  },
+  "driversFile": "data/registered-drivers.json",
+  "drivers": [
+    {
+      "name": "Gruzvill Driver 1",
+      "login": "driver@example.com",
+      "password": "password",
+      "type": "e-mail"
+    }
+  ],
+  "registration": {
+    "enabled": false
+  },
+  "useConfigDrivers": false,
+  "driverLocations": [
+    {
+      "latitude": 47.221,
+      "longitude": 39.633
+    },
+    {
+      "latitude": 47.22235,
+      "longitude": 39.6352
+    },
+    {
+      "latitude": 47.21985,
+      "longitude": 39.6316
+    }
+  ],
+  "driverLocationSpreadMeters": 350,
+  "tripSimulation": {
+    "enabled": true,
+    "moveIntervalMs": 2500,
+    "speedToPickupKmh": 28,
+    "speedInTripKmh": 38,
+    "arriveDistanceMeters": 35,
+    "finishDistanceMeters": 45,
+    "autoArrive": true,
+    "autoStartTrip": true,
+    "autoStartRequiresCode": false,
+    "startAfterArriveMs": 7000,
+    "autoFinishTrip": false,
+    "startRetryMs": 2500
+  },
+  "hydrateActiveOrders": true,
+  "logMissingCoordinateKeys": true,
+  "manualChoiceOnly": true,
+  "forceCandidateOnly": false,
+  "autoAcceptCandidates": false,
+  "trainingAutoAcceptCandidates": false,
+  "cleanupOldActiveOrders": true,
+  "cancelExistingActiveOrdersOnStart": true,
+  "cancelActiveOrdersWithUnknownAgeOnStart": true,
+  "staleActiveOrderMaxAgeMinutes": 20,
+  "votingStartCodeCandidates": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "votingStartTryWithoutCode": false,
+  "nonVotingStartTryCodeFallback": true,
+  "autoRegisterTestDrivers": false,
+  "minReadyDrivers": 0
+}

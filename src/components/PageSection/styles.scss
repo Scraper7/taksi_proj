@@ -1,0 +1,15 @@
+.page-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &--scroll {
+    &--enabled {
+      overflow-y: auto;
+    }
+    &--disabled {
+      overflow-y: hidden;
+    }
+  }
+}
