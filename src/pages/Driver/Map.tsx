@@ -41,6 +41,7 @@ import PageSection from '../../components/PageSection'
 import Button from '../../components/Button'
 import SmoothRotatingMarker from '../../components/SmoothRotatingMarker'
 import { EDriverTabs } from '.'
+import { useMapChannel } from '../../platform/map-channel'
 import { DRIVER_OFFER_LIFETIME_MS, isOfferOrder, isVotingOrder } from '../../tools/driverOffer'
 import { BROWSER_EMULATOR_STATE_EVENT, isBrowserEmulatorRunning, isDriverEmulatorTargetOrder, isEmulatedClientOrder } from '../../tools/emulatorMode'
 import {
@@ -537,6 +538,11 @@ function DriverOrderMapModeContent({
   // --- Мок-режим дизайн-системы маркера (демо на статичных данных) ---
   const [mockEnabled, setMockEnabled] = useState(() => isMarkerMockEnabled())
   const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null)
+
+  // Platform Core: единственная граница карты с приложением на Stage 1.
+  // Выбор заказа уходит Action'ом driver.order.select; открытие карточки —
+  // решение стороны Application (в мок-режиме карточка по-прежнему не открывается).
+  const mapChannel = useMapChannel({ mockEnabled, setOrderCardModal })
   const [hintBgAlpha, setHintBgAlpha] = useState(85)
   const [legendOpen, setLegendOpen] = useState(false)
   const [mapFilters, setMapFilters] = useState<TMapFilters>(DEFAULT_MAP_FILTERS)
@@ -1375,6 +1381,11 @@ function DriverOrderMapModeContent({
   // Клик по мок-маркеру: выделение (§12) + dev-оверлей с ID. Карточку заказа в моке не открываем.
   const onMockMarkerClick = useCallback((order: IOrder, performing: boolean) => {
     setSelectedOrderId(String(order.b_id))
+    // Тот же семантический Action, что и в реальном режиме: путь рендера разный
+    // (кластерный слой против одиночных маркеров), пользовательское действие — одно.
+    // b_id передаём как есть (без String()): дальше он уходит в setOrderCardModal,
+    // а заказы в сторе кэшируются по сырому b_id — приводить тип нельзя.
+    mapChannel.selectOrder(order.b_id)
     // Продление VOTE кликом (§5: клиент тянет таймер вверх). +30 c к жизни заказа;
     // бампаем тик, чтобы кольцо/счётчик обновились сразу, не дожидаясь секунды.
     if (getOrderLifeMode(order) === 'vote') {
@@ -1832,10 +1843,11 @@ function DriverOrderMapModeContent({
                   } catch (_) {}
                   setSelectedOrderId(String(item.b_id))
                   showMarkerDebugOverlay(item, item === performingOrder)
-                  // В мок-режиме карточку заказа не открываем — данных на бэке нет,
-                  // тап только выделяет маркер (§12 «выбрано») и показывает диагностику.
-                  if (!mockEnabled)
-                    setOrderCardModal({ isOpen: true, orderId: item.b_id })
+                  // Выбор заказа уходит в приложение через Interaction Contract.
+                  // Открытие карточки решает сторона Application: в мок-режиме её
+                  // по-прежнему не открываем — данных на бэке нет, тап только
+                  // выделяет маркер (§12 «выбрано») и показывает диагностику.
+                  mapChannel.selectOrder(item.b_id)
                 },
               }}
               key={item.b_id}
