@@ -2,57 +2,60 @@
  * Platform Core — сторона Application для канала «карта».
  *
  * Единственный обработчик Stage 1: на Action driver.order.select публикует
- * Event driver.order.selected и — только если НЕ мок-режим — вызывает тот же
- * props-диспатч setOrderCardModal, что раньше звался из обработчика клика
- * напрямую. Поведение приложения не меняется.
+ * Event driver.order.selected. И всё.
+ *
+ * Про UI обработчик не знает ничего — ни mockEnabled, ни setOrderCardModal:
+ * решение «открывать ли карточку» принимает UI-подписчик (см. useMapChannel).
+ * Event публикуется ДО любого UI-действия по построению: подписчик получает
+ * управление уже после того, как Handler закончил, поэтому рассинхрон
+ * «Event ушёл, а модалка упала» невозможен.
+ *
+ * Handler не импортирует Mapper: обе стороны границы говорят на общем словаре
+ * map-channel-protocol.
  */
 
-import type { InteractionAction, InteractionEvent, Unsubscribe } from '../interaction-contract'
-import type { AppInteractionContract } from './AppInteractionContract'
-import type { IOrderSelectPayload } from './MapMapper'
+import type {
+  InteractionAction,
+  InteractionEvent,
+  Unsubscribe,
+} from '../interaction-contract'
+import type {
+  IApplicationContract,
+  IOrderSelectedPayload,
+  IOrderSelectPayload,
+} from './map-channel-protocol'
 import {
   DRIVER_ORDER_SELECTED_EVENT,
   DRIVER_ORDER_SELECT_ACTION,
   MAP_CHANNEL_SOURCE,
-} from './MapMapper'
-
-export interface IMapApplicationDeps {
-  /**
-   * Мок-режим: карточку заказа не открываем — данных на бэке нет.
-   * Тап только выделяет маркер и показывает диагностику (поведение как до интеграции).
-   */
-  readonly mockEnabled: boolean
-
-  /** Тот же props-диспатч из connect(), что раньше вызывался прямо из карты. */
-  readonly setOrderCardModal: (payload: { isOpen: true, orderId: string }) => unknown
-}
+} from './map-channel-protocol'
 
 /**
- * getDeps — геттер, а не значение: обработчик регистрируется один раз, но всегда
- * читает актуальные mockEnabled/setOrderCardModal, не пересоздавая подписку.
+ * Регистрация зависит от интерфейса IApplicationContract, а не от класса:
+ * реализацию шины можно подменить, не трогая обработчик.
  */
-export function registerMapApplicationHandler(
-  contract: AppInteractionContract,
-  getDeps: () => IMapApplicationDeps,
-): Unsubscribe {
+export function registerMapApplicationHandler(contract: IApplicationContract): Unsubscribe {
   return contract.registerHandler((action: InteractionAction) => {
     if (action.type !== DRIVER_ORDER_SELECT_ACTION)
       return
 
-    const { orderId } = action.payload as IOrderSelectPayload
-    const deps = getDeps()
+    const payload = action.payload as IOrderSelectPayload | undefined
+    const orderId = payload ? payload.orderId : ''
+    // Тот же контроль, что и в Mapper: до Event'а доходит только валидное
+    // действие. Молча выходим — никаких исключений на стороне Application.
+    if (!orderId)
+      return
 
-    const event: InteractionEvent<IOrderSelectPayload> = {
+    const event: InteractionEvent<IOrderSelectedPayload> = {
       type: DRIVER_ORDER_SELECTED_EVENT,
       payload: { orderId },
       metadata: {
         source: MAP_CHANNEL_SOURCE,
         timestamp: action.metadata ? action.metadata.timestamp : new Date().toISOString(),
+        // correlationId Action'а переезжает в Event: одна цепочка — один id.
+        correlationId: action.metadata ? action.metadata.correlationId : undefined,
       },
     }
     contract.publish(event)
-
-    if (!deps.mockEnabled)
-      deps.setOrderCardModal({ isOpen: true, orderId })
   })
 }
